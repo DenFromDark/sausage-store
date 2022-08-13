@@ -43,7 +43,7 @@ pipeline {
         }
    
 
-curl -X POST -H 'Content-type: application/json' --data '{"text":"**Укажите здесь своё имя и фамилию** собрал приложение."}' https://hooks.slack.com/services/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
+curl -X POST -H 'Content-type: application/json' --data '{"text":"Денис Понизовский собрал приложение."}' https://hooks.slack.com/services/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
 
 # -X — указывает на метод запроса (GET, POST, PUT, DELETE и т.д)
 # -H — хедер запроса в виде: ключ: значение
