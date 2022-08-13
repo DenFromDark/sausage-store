@@ -41,7 +41,7 @@ pipeline {
                 archiveArtifacts(artifacts: 'frontend/dist/frontend/*')
             }
         }
-    }
+   
 
 curl -X POST -H 'Content-type: application/json' --data '{"text":"**Укажите здесь своё имя и фамилию** собрал приложение."}' https://hooks.slack.com/services/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
 
@@ -49,5 +49,5 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"**Укажит
 # -H — хедер запроса в виде: ключ: значение
 # --data — содержимое запроса или по-другому payload
 # и в конце сам адрес, на который отправляется запрос
-
+	}
 }
