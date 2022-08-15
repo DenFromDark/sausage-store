@@ -41,8 +41,10 @@ pipeline {
                 archiveArtifacts(artifacts: 'frontend/dist/frontend/*')
             }
         }
-   
-#curl -X POST -H 'Content-type: application/json' --data '{"text":"Денис Понизовский собрал приложение."}' https://hooks.slack.com/services/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
-
+	
+	stage('Say about good job') {
+		steps {
+		}
 	}
+     }
 }
