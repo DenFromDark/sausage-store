@@ -45,6 +45,6 @@ pipeline {
 //	stage('Say about good job') {
 //		steps {
 //		}
-	}
+//	}
      }
 }
