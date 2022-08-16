@@ -5,6 +5,11 @@ pipeline {
         pollSCM('H/5 * * * *') // Запускать будем автоматически по крону примерно раз в 5 минут
     }
 
+    environment{ //Notify in Slack
+	CURL = '''curl -X POST -H 'Content-type: application/json' --data '{"text":"Денис Понизовский собрал приложение."}' https://hooks.slack.com/services/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'''
+	}
+
+
     tools {
         maven 'Maven' // Для сборки бэкенда нужен Maven
         jdk 'JDK' // И Java Developer Kit нужной версии
@@ -42,9 +47,10 @@ pipeline {
             }
         }
 	
-//	stage('Say about good job') {
-//		steps {
-//		}
-//	}
+	stage('notification') {
+		steps {
+			sh "${CURL}"
+		}
+	}
      }
 }
