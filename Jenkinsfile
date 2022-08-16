@@ -42,9 +42,9 @@ pipeline {
             }
         }
 	
-	stage('Say about good job') {
-		steps {
-		}
+//	stage('Say about good job') {
+//		steps {
+//		}
 	}
      }
 }
