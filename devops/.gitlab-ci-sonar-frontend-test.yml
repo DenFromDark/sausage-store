@@ -6,6 +6,8 @@ sonarqube-frontend-test:
     - cd frontend
     - >
       sonar-scanner \
-      -Dsonar.projectKey=dd-sausage-store \
-      -Dsonar.host.url=${SONAR_URL} \
-      -Dsonar.login=${Sonar_KEY}
+      -Dsonar.projectKey=${KEY_SONAR} \
+      -Dsonar.host.url=${URL_SONAR} \
+      -Dsonar.login=${LOGIN_SONAR}
+  needs:
+    - build-frontend-code-job
