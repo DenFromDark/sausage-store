@@ -1,7 +1,7 @@
 spotbugs-sast:
     stage: test
     dependencies:
-      - buld-backend-code-job
+      - build-backend-code-job
     variables:
       COMPILE: "false"
       SAST_JAVA_VERSION: 11
