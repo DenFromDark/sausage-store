@@ -4,7 +4,7 @@ build-frontend-code-job:
       changes:
       - frontend/*
       - .gitlab-ci.yml
-      - devops/.gitlab-ci-sonar-frontend-test.yml
+      - devops/.*.yml
     script:
       - cd frontend
       - npm install
