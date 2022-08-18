@@ -1,5 +1,6 @@
 include:
   - local: "devops/*.yml"
+  - template: "Security/SAST.gitlab-ci.yml"
 
 stages:
   - build
