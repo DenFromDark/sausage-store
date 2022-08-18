@@ -2,7 +2,7 @@ build-backend-code-job:
     stage: build
     only:
       changes:
-      - backend/*
+      - backend/**/*
       - .gitlab-ci.yml
       - devops/.*.yml
     script:
