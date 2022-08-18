@@ -1,7 +1,7 @@
 sonarqube-frontend-test:
   stage: test
   image:
-    name: sonarsource/sonar-scaner-cli:latest
+    name: sonarsource/sonar-scanner-cli:latest
   script:
     - cd frontend
     - >
