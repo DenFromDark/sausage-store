@@ -8,7 +8,7 @@ sonarqube-backend-test:
     - cd backend
     - >
       mvn sonar:sonar
-      -Dsonaar.qualitygate.wait=true
+      -Dsonar.qualitygate.wait=true
       -Dsonar.projectName=${KEY_BACK_SONAR}
       -Dsonar.projectKey=${KEY_BACK_SONAR}
       -Dsonar.host.url=${URL_SONAR}
