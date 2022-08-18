@@ -1,0 +1,11 @@
+spotbugs-sast:
+    stage: test
+    dependencies:
+      - buld-backend-code-job
+    variables:
+      COMPILE: "false"
+      SAST_JAVA_VERSION: 11
+      MAVEN_REPO_PATH: ${CI_PROJECT_DIR}/.m2/repository # не забудьте при сборке также указывать эту папку через аргумент -Dmaven.repo.local
+    artifacts:
+      reports:
+        sast: gl-sast-report.json
