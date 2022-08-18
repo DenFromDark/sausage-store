@@ -12,4 +12,4 @@ sonarqube-backend-test:
       -Dsonar.projectName=${KEY_BACK_SONAR}
       -Dsonar.projectKey=${KEY_BACK_SONAR}
       -Dsonar.host.url=${URL_SONAR}
-      -Dsonar.login=${LOGIN_SONAR}
+      -Dsonar.login=${LOGIN_BACK_SONAR}
