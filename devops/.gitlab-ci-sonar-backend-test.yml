@@ -7,7 +7,7 @@ sonarqube-backend-test:
   script:
     - cd backend
     - >
-      mvn verify sonar:sonar 
+      mvn verify sonar:sonar
       -Dsonar.qualitygate.wait=true
       -Dsonar.projectName=${KEY_BACK_SONAR}
       -Dsonar.projectKey=${KEY_BACK_SONAR}
