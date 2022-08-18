@@ -11,6 +11,7 @@ build-frontend-code-job:
     artifacts:
       paths:
         - frontend/dist/frontend
+        - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST
 
 slack-notification-frontend:
     stage: notify
