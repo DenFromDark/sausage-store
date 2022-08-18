@@ -7,6 +7,5 @@ sonarqube-frontend-test:
     - >
       sonar-scanner \
       -Dsonar.projectKey=dd-sausage-store \
-      -Dsonar.sources=. \
       -Dsonar.host.url=${SONAR_URL} \
       -Dsonar.login=${Sonar_KEY}
