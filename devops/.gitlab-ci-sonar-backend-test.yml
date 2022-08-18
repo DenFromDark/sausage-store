@@ -1,0 +1,13 @@
+sonarqube-backend-test:
+  stage: test
+  dependencies:
+    - build-backend-code-job
+  image:
+    name: maven:3.8-openjdk-16
+  script:
+    - cd backend
+    - >
+      mvn sonar:sonar \
+      -Dsonar.projectKey=${KEY_BACK_SONAR} \
+      -Dsonar.host.url=${URL_SONAR} \
+      -Dsonar.login=${LOGIN_BACK_SONAR}
