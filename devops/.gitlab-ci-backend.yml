@@ -4,6 +4,7 @@ build-backend-code-job:
       changes:
       - backend/*
       - .gitlab-ci.yml
+      - devops/.gitlab-ci-sonar-backend-test.yml
     script:
       - cd backend
       - mvn package -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository
