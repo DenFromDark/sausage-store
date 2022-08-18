@@ -1,7 +1,5 @@
 sonarqube-frontend-test:
   stage: test
-  dependencies:
-    -build-frontend-code-job
   image:
     name: sonarsource/sonar-scanner-cli:latest
   script:
