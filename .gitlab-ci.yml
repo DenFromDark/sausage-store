@@ -7,6 +7,7 @@ build-backend-code-job:
   only:
     changes:
     - backend/*
+    - .gitlab-ci.yml
   script:
     - cd backend
     - mvn package
@@ -19,6 +20,7 @@ build-frontend-code-job:
   only:
     changes:
     - frontend/*
+    - .gitlab-ci.yml
   script:
     - cd frontend
     - npm install
