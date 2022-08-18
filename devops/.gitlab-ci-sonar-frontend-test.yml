@@ -7,7 +7,7 @@ sonarqube-frontend-test:
     - >
       sonar-scanner \
       -Dsonar.projectKey=${KEY_SONAR} \
-      -Dsonar.host.url=https://sonarqube.praktikum-services.ru \
+      -Dsonar.host.url=${URL_SONAR} \
       -Dsonar.login=${LOGIN_SONAR}
   needs:
     - build-frontend-code-job
