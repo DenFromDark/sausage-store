@@ -1,0 +1,14 @@
+sonarqube-frontend-test:
+  stage: test
+  dependencies:
+    - build-frontend-code-job
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+  script:
+    - cd frontend
+    - >
+      sonar-scanner
+      -Dsonar.qualitygate.wait=true
+      -Dsonar.projectKey=${KEY_SONAR}
+      -Dsonar.host.url=${URL_SONAR}
+      -Dsonar.login=${LOGIN_SONAR}
