@@ -20,6 +20,6 @@ slack-notification-frontend:
       variables:
       - $CI_COMMIT_MESSAGE =~ /send notification/
     script:
-      - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал front при помощи Gitlab CI и такой-то матери. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-frontend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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
+      - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал front при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-frontend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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
     needs:
       - build-frontend-code-job
