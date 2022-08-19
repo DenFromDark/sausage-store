@@ -1,0 +1,3 @@
+sonar-frontent-test:
+    stage: test
+    name:
