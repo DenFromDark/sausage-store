@@ -17,6 +17,6 @@ upload-frontend-release:
       variables:
       - $CI_COMMIT_MESSAGE =~ /send version/
     script:
-      - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Вышла новая версия Frontend сосисочной — <${VERSION}>. Скачать Frontend можно по ссылке — <${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz|Скачать артефакты>"}' https://hooks.slack.com/services/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
+      - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Вышла новая версия Frontend сосисочной — |${VERSION}|. Скачать Frontend можно по ссылке — <${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz|Скачать артефакты>"}' https://hooks.slack.com/services/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
     needs:
       - build-frontend-code-job
