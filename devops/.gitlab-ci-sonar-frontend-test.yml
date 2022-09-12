@@ -4,6 +4,8 @@ sonarqube-frontend-test:
     - build-frontend-code-job
   image:
     name: sonarsource/sonar-scanner-cli:latest
+  needs:
+    build-frontend-code-job
   script:
     - cd frontend
     - >

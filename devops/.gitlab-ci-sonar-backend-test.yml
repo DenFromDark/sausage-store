@@ -4,7 +4,8 @@ sonarqube-backend-test:
     - build-backend-code-job
   image:
     name: maven:3.8-openjdk-16
-    
+  needs:
+    build-backend-code-job  
   script:
     - cd backend
     - >
