@@ -1,10 +1,10 @@
 upload-backend-release:
   stage: release
-  only:
-    changes:
-      - backend/**/*
-      - .gitlab-ci.yml
-      - devops/.*.yml
+#  only:
+#    changes:
+#      - backend/**/*
+#      - .gitlab-ci.yml
+#     - devops/.*.yml
   needs:
     - build-backend-code-job
   script:
