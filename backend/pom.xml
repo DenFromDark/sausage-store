@@ -6,7 +6,7 @@
         <repository>
             <id>sausage-store</id>
             <name>sausage-store</name>
-            <url>${env.NEXUS_REPO_URL}/sausage-store/</url>
+            <url>${env.NEXUS_REPO_URL}/08-denis-ponizovskiy-sausage-store-backend/</url>
         </repository>
     </distributionManagement>
     <parent>
