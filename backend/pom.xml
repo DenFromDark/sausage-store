@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <distributionManagement>
         <repository>
-            <id>sausage-store</id>
-            <name>sausage-store</name>
+            <id>08-denis-ponizovskiy-sausage-store-backend</id>
+            <name>08-denis-ponizovskiy-sausage-store-backend</name>
             <url>${env.NEXUS_REPO_URL}/08-denis-ponizovskiy-sausage-store-backend/</url>
         </repository>
     </distributionManagement>
