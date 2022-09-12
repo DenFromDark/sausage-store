@@ -8,13 +8,10 @@ build-backend-code-job:
     script:
       - cd backend
       - mvn package -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository -Dversion.application=${VERSION}
-    cache:
-      paths:
-        - ${CI_PROJECT_DIR}/.m2/repository # для хранения зависимостей бэкенда
-#    artifacts:
-#      paths:
-#        - backend/target/sausage-store-${VERSION}.jar
-#        - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
+    artifacts:
+     paths:
+      - backend/target/sausage-store-${VERSION}.jar
+      - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
 
 slack-notification-backend:
   stage: notify

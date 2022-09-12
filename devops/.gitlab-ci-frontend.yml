@@ -9,13 +9,10 @@ build-frontend-code-job:
       - cd frontend
       - npm install
       - npm run build
-    cache:
-    paths:
-      - frontend/dist/frontend # для хранения фронта
-#    artifacts:
-#      paths:
-#        - frontend/dist/frontend
-#        - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST
+    artifacts:
+      paths:
+        - frontend/dist/frontend
+        - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST
 
 slack-notification-frontend:
     stage: notify
