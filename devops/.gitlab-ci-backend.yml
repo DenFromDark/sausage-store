@@ -7,11 +7,10 @@ build-backend-code-job:
 #      - devops/.*.yml
     script:
       - cd backend
-      - mkdir -p ${CI_PROJECT_DIR}/target
       - mvn package -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository -Dversion.application=${VERSION}
     artifacts:
      paths:
-        - ${CI_PROJECT_DIR}/backend/target/sausage-store-${VERSION}.jar
+        - backend/target/sausage-store-${VERSION}.jar
         - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
 
 slack-notification-backend:
