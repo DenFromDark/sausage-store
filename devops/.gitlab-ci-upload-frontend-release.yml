@@ -13,9 +13,9 @@ upload-frontend-release:
     - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
 slack-notification-frontend:
   stage: notify
-  only:
-    variables:
-    - $CI_COMMIT_MESSAGE =~ /send version/
+#  only:
+#    variables:
+#    - $CI_COMMIT_MESSAGE =~ /send version/
   script:
     - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Вышла новая версия Frontend сосисочной — '${VERSION}''. Скачать Frontend можно по ссылке — <'${NEXUS_REPO_URL}'/sausage-store-ponizovskiy-denis-frontend/sausage-store/'${VERSION}'/sausage-store-'${VERSION}''.tar.gz|Скачать артефакты>"}' https://hooks.slack.com/services/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
   needs:
