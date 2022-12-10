@@ -13,11 +13,16 @@ upload-frontend-release:
     - tar czvf sausage-store-${VERSION}.tar.gz frontend
     - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
 slack-notification-frontend:
-  stage: notify
+  stage: notifity
   only:
     variables:
-    - $CI_COMMIT_MESSAGE =~ /send version/
+      - $CI_COMMIT_MESSAGE =~ /send version/
+  variables:
+    DATA: '{"text":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
+    CONTENT_TYPE: 'Content-type: application/json'
+    SLACK_WEBHOOK: 'https://hooks.slack.com/services/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'
   script:
-    - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}' https://hooks.slack.com/services/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
+    - printenv
+    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$SLACK_WEBHOOK"'
   needs:
     - upload-frontend-release
