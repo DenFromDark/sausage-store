@@ -8,6 +8,5 @@ variables:
 
 stages:
   - build
-#  - test
   - release
   - notify
