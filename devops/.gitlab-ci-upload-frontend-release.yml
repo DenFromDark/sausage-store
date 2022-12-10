@@ -5,6 +5,7 @@ upload-frontend-release:
 #      - frontend/**/*
 #      - .gitlab-ci.yml
 #      - devops/.*.yml
+#
   needs:
     - build-frontend-code-job
   script:
