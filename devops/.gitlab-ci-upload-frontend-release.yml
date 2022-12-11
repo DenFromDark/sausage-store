@@ -20,7 +20,7 @@ slack-notification-frontend:
   variables:
     DATA: '{"text":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
     CONTENT_TYPE: 'Content-type: application/json'
-    SLACK_WEBHOOK: 'https://hooks.slack.com/services/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'
+    SLACK_WEBHOOK: '${env.PACHKA_HOOK}'
   script:
     - printenv
     - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$SLACK_WEBHOOK"'
