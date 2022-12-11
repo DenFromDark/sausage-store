@@ -16,7 +16,7 @@ slack-notification-backend:
     variables:
       - $CI_COMMIT_MESSAGE =~ /send version/
   variables:
-    DATA: '{"text":"Вышла новая версия Backend сосисочной — ${VERSION}. Скачать Backend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar"}'
+    DATA: '{"message":"Вышла новая версия Backend сосисочной — ${VERSION}. Скачать Backend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar"}'
     CONTENT_TYPE: 'Content-type: application/json'
     SLACK_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
   script:

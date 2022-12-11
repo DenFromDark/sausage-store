@@ -18,7 +18,7 @@ slack-notification-frontend:
     variables:
       - $CI_COMMIT_MESSAGE =~ /send version/
   variables:
-    DATA: '{"text":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
+    DATA: '{"message":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
     CONTENT_TYPE: 'Content-type: application/json'
     SLACK_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
   script:
