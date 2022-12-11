@@ -1,16 +1,16 @@
 upload-backend-release:
   stage: release
-#  only:
-#    changes:
-#      - backend/**/*
-#      - .gitlab-ci.yml
-#     - devops/.*.yml
+  only:
+    changes:
+      - backend/**/*
+      - .gitlab-ci.yml
+      - devops/.*.yml
   needs:
     - build-backend-code-job
   script:
     - cd backend
     - mvn -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository -s settings.xml -Dversion.application=${VERSION} -DskipTests deploy
-slack-notification-backend:
+notification-backend:
   stage: notify
   only:
     variables:
@@ -18,9 +18,9 @@ slack-notification-backend:
   variables:
     DATA: '{"message":"Вышла новая версия Backend сосисочной — ${VERSION}. Скачать Backend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar"}'
     CONTENT_TYPE: 'Content-type: application/json'
-    SLACK_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
+    PACHKA_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
   script:
     - printenv
-    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$SLACK_WEBHOOK"'
+    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$PACHKA_WEBHOOK"'
   needs:
     - upload-backend-release

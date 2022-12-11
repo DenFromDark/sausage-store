@@ -1,18 +1,17 @@
 upload-frontend-release:
   stage: release
-#  only:
-#    changes:
-#      - frontend/**/*
-#      - .gitlab-ci.yml
-#      - devops/.*.yml
-#
+  only:
+    changes:
+      - frontend/**/*
+      - .gitlab-ci.yml
+      - devops/.*.yml
   needs:
     - build-frontend-code-job
   script:
     - cd frontend/dist
     - tar czvf sausage-store-${VERSION}.tar.gz frontend
     - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
-slack-notification-frontend:
+notification-frontend:
   stage: notify
   only:
     variables:
@@ -20,9 +19,9 @@ slack-notification-frontend:
   variables:
     DATA: '{"message":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
     CONTENT_TYPE: 'Content-type: application/json'
-    SLACK_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
+    PACHKA_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
   script:
     - printenv
-    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$SLACK_WEBHOOK"'
+    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$PACHKA_WEBHOOK"'
   needs:
     - upload-frontend-release

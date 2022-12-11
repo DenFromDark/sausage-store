@@ -1,8 +1,5 @@
 sonarqube-frontend-test:
   stage: test
-  only:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /testing/
   dependencies:
     - build-frontend-code-job
   image:

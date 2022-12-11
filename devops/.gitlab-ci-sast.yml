@@ -1,8 +1,5 @@
 spotbugs-sast:
   stage: test
-#  only:
-#    variables:
-#      - $CI_COMMIT_MESSAGE =~ /testing/    
   dependencies:
     - build-backend-code-job
   variables:
