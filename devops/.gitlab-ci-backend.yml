@@ -13,12 +13,12 @@ build-backend-code-job:
       - backend/target/sausage-store-${VERSION}.jar
       - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
 
-slack-notification-backend:
-  stage: notify
-  only:
-    variables:
-    - $CI_COMMIT_MESSAGE =~ /send notification/
-  script:
-    - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал back при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-backend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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 
-  needs:
-    - build-backend-code-job
+#slack-notification-backend:
+#  stage: notify
+#  only:
+#   variables:
+#   - $CI_COMMIT_MESSAGE =~ /send notification/
+# script:
+#   - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал back при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-backend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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 
+# needs:
+#   - build-backend-code-job
