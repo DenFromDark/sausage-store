@@ -10,14 +10,12 @@ before_script:
 stages:
   - deploy
 
-  only:
-    changes:
-      - backend/**/*
-      - .gitlab-ci.yml
-      - devops/.*.yml
-
 deploy:
   stage: deploy
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - devops/.*.yml
   script:
      #выполняем простую команду для проверки
      - ssh ${DEV_USER}@${DEV_HOST} "id" 
