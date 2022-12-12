@@ -7,7 +7,7 @@ frontend:
     include:
       devops/.frontend.yml"
 #    - template: "Security/SAST.gitlab-ci.yml"
-    startegy: depend
+    strategy: depend
   only:
     changes: 
       - frontend/**/*
@@ -18,7 +18,7 @@ backend:
     include:
       devops/.backend.yml"
 #    - template: "Security/SAST.gitlab-ci.yml"
-    startegy: depend
+    strategy: depend
   only:
     changes: 
       - backend/**/*
