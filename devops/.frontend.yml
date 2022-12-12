@@ -30,8 +30,7 @@ release:
   stage: release
   script:
     - tar czvf sausage-store-${VERSION}.tar.gz sausage-store-${VERSION}
-    - >
-    curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
+    - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
   only:
     changes:
     - frontend/*
