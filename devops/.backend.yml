@@ -24,6 +24,8 @@ build:
     rules: # rules и only в данных случаях взаимозаменяемы
       - changes:
         - backend/*
+        - .gitlab-ci.yml
+        - devops/.backend.yml
 
 release:
    stage: release
@@ -33,6 +35,8 @@ release:
    rules:
       - changes:
            - backend/*
+           - .gitlab-ci.yml
+           - devops/.backend.yml
 
 
 #build-backend-code-job:

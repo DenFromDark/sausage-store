@@ -23,6 +23,8 @@ build:
   only:
     changes:
     - frontend/*
+    - .gitlab-ci.yml
+    - devops/.frontend.yml
 
 release:
   stage: release
@@ -33,6 +35,8 @@ release:
   only:
     changes:
     - frontend/*
+    - .gitlab-ci.yml
+    - devops/.frontend.yml
 
 #build-frontend-code-job:
 #    stage: build
