@@ -2,7 +2,7 @@ trigger:
   include:
     - local: "devops/*.yml"
     - template: "Security/SAST.gitlab-ci.yml"
-#    - strategy: depend
+    - strategy: depend
 
 variables:
   VERSION: 1.0.${CI_PIPELINE_ID}

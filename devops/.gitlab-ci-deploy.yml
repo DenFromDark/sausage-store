@@ -10,6 +10,12 @@ before_script:
 stages:
   - deploy
 
+  only:
+    changes:
+      - backend/**/*
+      - .gitlab-ci.yml
+      - devops/.*.yml
+
 deploy:
   stage: deploy
   script:
