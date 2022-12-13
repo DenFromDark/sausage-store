@@ -110,6 +110,7 @@ deploy:
   stage: deploy
   script:
   #- ssh ${DEV_USER}@${DEV_HOST}
+  - echo "${VERSION}"
   # прописать креды от Nexus в переменные в настройке пайплайна
   - scp ./devops/sausage-store-frontend.service ${DEV_USER}@${DEV_HOST}:/home/${DEV_USER}/sausage-store-frontend.service
   #- curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
