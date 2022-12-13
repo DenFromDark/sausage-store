@@ -11,8 +11,7 @@ stages:
    - build
    - release
    - notify
-   - deploy
-
+   
 build:
     stage: build
     script:
@@ -93,25 +92,26 @@ notification-backend:
 #   - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал back при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-backend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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 
 # needs:
 #   - build-backend-code-job
-
-before_script:
-  #устанавливаем ssh-agent для удобства аутентификации по ssh
-  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-  - eval $(ssh-agent -s)
-  #сохраняем сгенеренный ранее приватный ключ для раннера
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-  - mkdir -p ~/.ssh
-  - chmod 600 ~/.ssh
-  #Добавляем хост
-  - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
-
-deploy:
-  stage: deploy
-  script:
-  - ssh ${DEV_USER}@${DEV_HOST}
-  # скачиваем ранее собранный артефакт с Nexus. При этом необходимо заранее
-  # прописать креды от Nexus в переменные в настройке пайплайна
-  - curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
- # запускаем бэкенд  
-  - java -jar sausage-store-${VERSION}.jar & 
+#
+#before_script:
+#  #устанавливаем ssh-agent для удобства аутентификации по ssh
+#  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+#  - eval $(ssh-agent -s)
+#  #сохраняем сгенеренный ранее приватный ключ для раннера
+#  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#  - mkdir -p ~/.ssh
+#  - chmod 600 ~/.ssh
+#  #Добавляем хост
+#  - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+#  - chmod 644 ~/.ssh/known_hosts
+#
+#deploy:
+#  stage: deploy
+#  script:
+#  - ssh ${DEV_USER}@${DEV_HOST}
+#  # скачиваем ранее собранный артефакт с Nexus. При этом необходимо заранее
+#  # прописать креды от Nexus в переменные в настройке пайплайна
+#  - curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
+# # запускаем бэкенд  
+#  - java -jar sausage-store-${VERSION}.jar & 
+#
