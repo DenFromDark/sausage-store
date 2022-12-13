@@ -9,6 +9,7 @@ stages:
    - build
    - release
    - notify
+   - deploy
 
 build:
   stage: build
