@@ -26,6 +26,7 @@ build:
     - frontend/*
     - .gitlab-ci.yml
     - devops/.frontend.yml
+    - devops/deploy_front.sh
 
 release:
   stage: release
@@ -37,6 +38,7 @@ release:
     - frontend/*
     - .gitlab-ci.yml
     - devops/.frontend.yml
+    - devops/deploy_front.sh
 
 #build-frontend-code-job:
 #    stage: build
@@ -115,4 +117,5 @@ deploy:
   # скачиваем ранее собранный артефакт с Nexus. При этом необходимо заранее
   # запускаем бэкенд
   #- java -jar sausage-store-${VERSION}.jar & 
-  
+  needs:
+    - release
