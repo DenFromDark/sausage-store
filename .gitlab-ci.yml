@@ -41,9 +41,9 @@ frontend:
 
 backend:
   stage: module-pipelines
-    trigger:
-      include:
-        devops/.backend.yml
+  trigger:
+    include:
+      devops/.backend.yml
 #    - template: "Security/SAST.gitlab-ci.yml"
     strategy: depend
   only:
