@@ -8,7 +8,7 @@ sudo sh -c 'cp -rf sausage-store-backend.service /etc/systemd/system/sausage-sto
     curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o /home/${DEV_USER}/sausage-store-${VERSION}.jar \
         ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar; \
 
-    cp ./sausage-store.jar /home/jarservice/sausage-store.jar||true; \
+    cp ./sausage-store.jar /home/jarservice/sausage-store.jar; \
 
     systemctl daemon-reload; \
     
