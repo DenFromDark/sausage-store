@@ -10,10 +10,8 @@
 #  - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
 #  - chmod 644 ~/.ssh/known_hosts
 
-
 #stages:
 #  - deploy
-#
 #
 #deploy:
 #  stage: deploy
@@ -25,16 +23,13 @@
 # # запускаем бэкенд  
 #  - java -jar sausage-store-${VERSION}.jar & 
 
-
-
-
 stages:
   - module-pipelines
 
 frontend:
   stage: module-pipelines
   trigger:
-   include:
+    include:
       devops/.frontend.yml
 #    - template: "Security/SAST.gitlab-ci.yml"
     strategy: depend
@@ -45,13 +40,13 @@ frontend:
       - devops/.frontend.yml
 
 backend:
- stage: module-pipelines
-  trigger:
-    include:
-      devops/.backend.yml
+  stage: module-pipelines
+    trigger:
+      include:
+        devops/.backend.yml
 #    - template: "Security/SAST.gitlab-ci.yml"
-   strategy: depend
- only:
+    strategy: depend
+  only:
     changes: 
       - backend/**/*
       - .gitlab-ci.yml
