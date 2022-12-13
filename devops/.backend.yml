@@ -106,10 +106,6 @@ notification-backend:
 # needs:
 #   - build-backend-code-job
 
-stages:
-  - deploy
-
-
 deploy:
   stage: deploy
   script:
