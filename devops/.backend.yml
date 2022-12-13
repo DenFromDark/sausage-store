@@ -11,7 +11,7 @@ stages:
    - build
    - release
    - notify
-#   - deploy
+   - deploy
 
 build:
     stage: build
