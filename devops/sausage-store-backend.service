@@ -7,7 +7,7 @@ Environment=REPORT_PATH=/log/reports
 Environment=LOG_PATH=/log
 StandardOutput=file:/log/out.log
 Restart=always
-ExecStart=/usr/bin/java \
+ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.basePath='/home/jarservice/' \
     -Dmyserver.bindAddr='127.0.0.1' \
     -Dmyserver.bindPort='8080' \
