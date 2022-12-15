@@ -149,7 +149,7 @@ deploy:
   stage: deploy
   environment:
     name: $CI_COMMIT_REF_SLUG
-    url: http://51.250.67.45
+    #url: http://51.250.67.45
     #on_stop: Delete deploy
   script:
   #- ssh ${DEV_USER}@${DEV_HOST}
