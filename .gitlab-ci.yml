@@ -39,6 +39,7 @@ frontend:
       - .gitlab-ci.yml
       - devops/.frontend.yml
       - devops/deploy_front.sh
+      - devops/susage-store-frontend.service
 
 backend:
   stage: module-pipelines
@@ -53,6 +54,7 @@ backend:
       - .gitlab-ci.yml
       - devops/.backend.yml
       - devops/deploy_back.sh
+      - devops/susage-store-backend.service
 
 #variables:
 #  VERSION: 1.0.${CI_PIPELINE_ID}
