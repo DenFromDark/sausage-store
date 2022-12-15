@@ -148,7 +148,7 @@ before_script:
 deploy:
   stage: deploy
   environment:
-    name: $CI_COMMIT_REF_SLUG
+    name: staging
     #url: http://51.250.67.45
     #on_stop: deploy
   script:
