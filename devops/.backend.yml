@@ -147,6 +147,9 @@ before_script:
 
 deploy:
   stage: deploy
+  environment:
+    name: $CI_COMMIT_REF_SLUG
+    on_stop: Delete deploy
   script:
   #- ssh ${DEV_USER}@${DEV_HOST}
 
