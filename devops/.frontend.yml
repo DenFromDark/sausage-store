@@ -40,6 +40,7 @@ release:
     - .gitlab-ci.yml
     - devops/.frontend.yml
     - devops/deploy_front.sh
+    - devops/sausage-store-frontend.service
 
 #build-frontend-code-job:
 #    stage: build
