@@ -8,6 +8,8 @@ sudo rm -f /home/jarservice/sausage-store.jar||true && \
 sudo curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o /home/${DEV_USER}/sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar && \
 sudo cp /home/${DEV_USER}/sausage-store-${VERSION}.jar /home/jarservice/sausage-store.jar && \
 #"<...>||true" говорит, если команда обвалится — продолжай#Обновляем конфиг systemd с помощью рестарта
+sudo chown jarservise:jarservice /home/jarservice/sausage-store.jar && \
+
 sudo systemctl daemon-reload && \
 
 #Перезапускаем сервис сосисочной
