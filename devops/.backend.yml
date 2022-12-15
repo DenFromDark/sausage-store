@@ -28,6 +28,7 @@ build:
         - .gitlab-ci.yml
         - devops/.backend.yml
         - devops/deploy_back.sh
+        - susage-store-backend.service
 
 release:
    stage: release
