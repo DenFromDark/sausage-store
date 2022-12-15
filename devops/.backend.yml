@@ -9,6 +9,7 @@ variables:
 
 stages:
    - build
+   - test
    - release
    - notify
    - deploy
@@ -18,10 +19,10 @@ build:
     script:
       - cd backend
       - mvn package -Dversion.application=${VERSION} -Dmaven.repo.local=${MAVEN_REPO_PATH}
-#    artifacts:
-#      paths:
-#       - backend/target/sausage-store-${VERSION}.jar
-#       - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
+    artifacts:
+      paths:
+       - backend/target/sausage-store-${VERSION}.jar
+       - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
     rules: # rules и only в данных случаях взаимозаменяемы
       - changes:
         - backend/*
@@ -29,6 +30,34 @@ build:
         - devops/.backend.yml
         - devops/deploy_back.sh
         - devops/susage-store-backend.service
+
+spotbugs-sast:
+  stage: test
+  dependencies:
+    - build
+  variables:
+    COMPILE: "false"
+    SAST_JAVA_VERSION: 16
+    MAVEN_REPO_PATH: ${CI_PROJECT_DIR}/.m2/repository # не забудьте при сборке также указывать эту папку через аргумент -Dmaven.repo.local
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+
+sonarqube-backend-test:
+  stage: test
+  dependencies:
+    - build
+  image:
+    name: maven:3.8-openjdk-16
+  script:
+    - cd backend
+    - >
+      mvn verify sonar:sonar
+      -Dsonar.qualitygate.wait=true
+      -Dsonar.projectName=${KEY_BACK_SONAR}
+      -Dsonar.projectKey=${KEY_BACK_SONAR}
+      -Dsonar.host.url=${URL_SONAR}
+      -Dsonar.login=${LOGIN_BACK_SONAR}
 
 release:
    stage: release
