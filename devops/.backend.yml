@@ -33,8 +33,6 @@ build:
 
 spotbugs-sast:
   stage: test
-  dependencies:
-    - build
   variables:
     COMPILE: "false"
     SAST_JAVA_VERSION: 16
