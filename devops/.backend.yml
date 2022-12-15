@@ -41,6 +41,7 @@ release:
            - .gitlab-ci.yml
            - devops/.backend.yml
            - devops/deploy_back.sh
+           - devops/susage-store-backend.service
 
 
 #build-backend-code-job:
