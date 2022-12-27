@@ -110,6 +110,18 @@ before_script:
 
 deploy:
   stage: deploy
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    url: http://51.250.67.45
+    on_stop: stop_review
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    #on_stop: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_COMMIT_BRANCH
+  
   script:
   #- ssh ${DEV_USER}@${DEV_HOST}
 
@@ -125,3 +137,14 @@ deploy:
   #- java -jar sausage-store-${VERSION}.jar & 
   needs:
     - release
+
+stop_review:
+  stage: deploy
+  script:
+    - echo "Remove review app"
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: manual

@@ -4,8 +4,8 @@ Description=Sausage-store
 [Service]
 User=jarservice
 Environment=REPORT_PATH=/log/reports
-Environment=LOG_PATH=/log
-StandardOutput=append:/logs/out.log
+Environment=LOG_PATH=/opt/log
+StandardOutput=append:/opt/log/sausage-store-backend.log
 Restart=always
 ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.basePath='/home/jarservice/' \
@@ -13,6 +13,7 @@ ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.bindPort='8080' \
     -Dmyserver.hostName='Sausage-store' \
     -jar '/home/jarservice/sausage-store.jar'
+ExecStartPre=+/bin/chown jarservice:jarservice /opt/log/sausage-store-backend.log
 SuccessExitStatus=143
 KillMode=process
 
