@@ -13,6 +13,11 @@ ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.bindPort='8080' \
     -Dmyserver.hostName='Sausage-store' \
     -jar '/home/jarservice/sausage-store.jar'
+
+    --spring.datasource.url=jdbc:postgresql://$PSQL_HOST:$PSQL_PORT/$PSQLDBNAME
+    --spring.datasource.username=$PSQL_USER
+	--spring.datasource.password=$PSQL_PASSWORD
+
 ExecStartPre=+/bin/chown jarservice:jarservice /opt/log/sausage-store-backend.log
 SuccessExitStatus=143
 KillMode=process
