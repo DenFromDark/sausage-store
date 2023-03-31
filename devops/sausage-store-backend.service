@@ -1,6 +1,7 @@
 [Unit]
 Description=Sausage-store
 
+
 [Service]
 User=jarservice
 Environment=REPORT_PATH=/log/reports
