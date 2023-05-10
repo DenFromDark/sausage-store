@@ -50,7 +50,7 @@ backend:
     strategy: depend
   only:
     changes: 
-      - backend/*
+      - backend/**/*
       - .gitlab-ci.yml
       - devops/.backend.yml
       - devops/deploy_back.sh
