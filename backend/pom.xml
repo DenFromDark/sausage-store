@@ -144,7 +144,7 @@
                     </execution>
                 </executions>
             </plugin>
-			<pligin>
+			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</ratifactId>
 				<version>8.0.5</version>
