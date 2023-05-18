@@ -15,13 +15,14 @@ ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.hostName='Sausage-store' \
     -jar '/home/jarservice/sausage-store.jar'
 
-    --spring.datasource.url=jdbc:postgresql://rc1b-micxirmrnkrwhvb8.mdb.yandexcloud.net:6432/DenFromDark
-    --spring.datasource.username=DenFromDark
-    --spring.datasource.password=Testusr1234
-
+   
 ExecStartPre=+/bin/chown jarservice:jarservice /opt/log/sausage-store-backend.log
 SuccessExitStatus=143
 KillMode=process
+
+    --spring.datasource.url=jdbc:postgresql://rc1b-micxirmrnkrwhvb8.mdb.yandexcloud.net:6432/DenFromDark
+    --spring.datasource.username=DenFromDark
+    --spring.datasource.password=Testusr1234
 
 
 
