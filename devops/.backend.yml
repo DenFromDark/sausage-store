@@ -159,6 +159,7 @@ deploy:
   # прописать креды от Nexus в переменные в настройке пайплайна
   - scp -v ./devops/sausage-store-backend.service ${DEV_USER}@${DEV_HOST}:/home/${DEV_USER}/sausage-store-backend.service
   - scp -v ./devops/deploy_back.sh ${DEV_USER}@${DEV_HOST}:/home/${DEV_USER}/deploy_back.sh
+  - scp -v ./devops/sausage-store-backend.env ${DEV_USER}@${DEV_HOST}:/home/${DEV_USER}/sausage-store-backend.env
   - ssh ${DEV_USER}@${DEV_HOST} "chmod +x /home/${DEV_USER}/deploy_back.sh"
   #- curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
   - ssh ${DEV_USER}@${DEV_HOST} "export "PSQL_HOST=${PSQL_HOST}"; export "PSQL_BASE=${PSQL_BASE}"; export "PSQL_USER=${PSQL_USER}"; export "PSQL_PORT=${PSQL_PORT}"; export "PSQL_PASS=${PSQL_PASS}"; export "VERSION=${VERSION}"; export "DEV_USER=${DEV_USER}"; export "DEV_HOST=${DEV_HOST}";export "NEXUS_REPO_URL=${NEXUS_REPO_URL}";export "NEXUS_REPO_USER=${NEXUS_REPO_USER}"; export "NEXUS_REPO_PASS=${NEXUS_REPO_PASS}";setsid /bin/bash < /home/${DEV_USER}/deploy_back.sh "
