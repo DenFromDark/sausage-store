@@ -171,5 +171,6 @@ deploy:
   # скачиваем ранее собранный артефакт с Nexus. При этом необходимо заранее
   # запускаем бэкенд
   #- java -jar sausage-store-${VERSION}.jar & 
+  
   needs:
     - release
