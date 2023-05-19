@@ -69,13 +69,13 @@ release:
    script:
       - cd backend
       - mvn deploy -DskipTests -Dversion.application=${VERSION} -Dmaven.repo.local=${MAVEN_REPO_PATH} -s settings.xml || true
-   rules:
-      - changes:
-           - backend/*
-           - .gitlab-ci.yml
-           - devops/.backend.yml
-           - devops/deploy_back.sh
-           - devops/sausage-store-backend.service
+#   rules:
+#      - changes:
+#           - backend/*
+#           - .gitlab-ci.yml
+#           - devops/.backend.yml
+#           - devops/deploy_back.sh
+#           - devops/sausage-store-backend.service
 
 
 #build-backend-code-job:
