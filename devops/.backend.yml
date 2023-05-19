@@ -25,7 +25,6 @@ build:
     rules: # rules и only в данных случаях взаимозаменяемы
       - changes:
         - backend/*
-        - backend/**/*
         - .gitlab-ci.yml
         - devops/.backend.yml
         - devops/deploy_back.sh
@@ -73,7 +72,6 @@ release:
    rules:
       - changes:
            - backend/*
-           - backend/**/*
            - .gitlab-ci.yml
            - devops/.backend.yml
            - devops/deploy_back.sh
