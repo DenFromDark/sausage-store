@@ -163,11 +163,11 @@ deploy:
   #- curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
   
   - ssh ${DEV_USER}@${DEV_HOST} "export "PSQL_HOST=${PSQL_HOST}"; export "PSQL_BASE=${PSQL_BASE}"; export "PSQL_USER=${PSQL_USER}"; export "PSQL_PORT=${PSQL_PORT}"; export "PSQL_PASS=${PSQL_PASS}""
-  - ssh ${DEV_USER}@${DEV_HOST} "echo "PSQL_HOST="$PSQL_HOST > /home/${DEV_USER}/sausage-store-backend.env" && \
+  - ssh ${DEV_USER}@${DEV_HOST} ""echo "PSQL_HOST="$PSQL_HOST > /home/${DEV_USER}/sausage-store-backend.env" && \
         echo "PSQL_PASS="$PSQL_PASS >> /home/${DEV_USER}/sausage-store-backend.env" && \
         echo "PSQL_PORT="$PSQL_PORT >> /home/${DEV_USER}/sausage-store-backend.env" && \
         echo "PSQL_BASE="$PSQL_BASE >> /home/${DEV_USER}/sausage-store-backend.env" && \
-        echo "PSQL_USER="$PSQL_USER >> /home/${DEV_USER}/sausage-store-backend.env"
+        echo "PSQL_USER="$PSQL_USER >> /home/${DEV_USER}/sausage-store-backend.env""
   - ssh ${DEV_USER}@${DEV_HOST} "export "VERSION=${VERSION}"; export "DEV_USER=${DEV_USER}"; export "DEV_HOST=${DEV_HOST}";export "NEXUS_REPO_URL=${NEXUS_REPO_URL}";export "NEXUS_REPO_USER=${NEXUS_REPO_USER}"; export "NEXUS_REPO_PASS=${NEXUS_REPO_PASS}";setsid /bin/bash < /home/${DEV_USER}/deploy_back.sh"
   - ssh ${DEV_USER}@${DEV_HOST} "echo "${VERSION}""
   - echo ${PSQL_HOST}
