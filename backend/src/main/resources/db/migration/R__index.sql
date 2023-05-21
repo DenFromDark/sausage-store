@@ -1,2 +1,2 @@
 DROP INDEX product_id_idx on product;
-CREATE INDEX ON product(id);
+CREATE INDEX product_id_idx ON product(id);
