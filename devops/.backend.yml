@@ -148,7 +148,7 @@ before_script:
 
   #Скачиваем и устанавливаем сертификат YANDEX
   - wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O YandexInternalRootCA.crt
-  - sudo keytool -importcert -file YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -norompt
+  - keytool -importcert -file YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -norompt
 
 
 deploy:
