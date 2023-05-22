@@ -73,8 +73,8 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
 
   #Скачиваем и устанавливаем сертификат YANDEX
-  - wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O YandexInternalRootCA.crt
-  - keytool -importcert -file YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -noprompt
+  - wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O ~/YandexInternalRootCA.crt
+  - keytool -importcert -file ~/YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -noprompt
 
 
 deploy:
