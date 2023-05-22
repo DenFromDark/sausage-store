@@ -32,40 +32,6 @@ build:
         - devops/deploy_back.sh
         - devops/sausage-store-backend.service
 
-#spotbugs-sast:
-#  stage: test
-# include:
-#   - template: "Security/SAST.gitlab-ci.yml"
-# dependencies:
-#   - build
-#  variables:
-#    COMPILE: "false"
-#    SAST_JAVA_VERSION: 16
-#    MAVEN_REPO_PATH: ${CI_PROJECT_DIR}/.m2/repository # не забудьте при сборке также указывать эту папку через аргумент -Dmaven.repo.local
-#  artifacts:
-#    reports:
-#      sast: gl-sast-report.json
-# needs:
-#   - build
-
-#sonarqube-backend-test:
-#  stage: test
-#  dependencies:
-#    - build
-#  image:
-#    name: maven:3.8-openjdk-16
-#  script:
-#    - cd backend
-#    - >
-#      mvn verify sonar:sonar
-#      -Dsonar.qualitygate.wait=true
-#      -Dsonar.projectName=${KEY_BACK_SONAR}
-#     -Dsonar.projectKey=${KEY_BACK_SONAR}
-#      -Dsonar.host.url=${URL_SONAR}
-#      -Dsonar.login=${LOGIN_BACK_SONAR}
-#  needs:
-#    - build
-
 release:
    stage: release
    script:
@@ -78,35 +44,6 @@ release:
 #           - devops/.backend.yml
 #           - devops/deploy_back.sh
 #           - devops/sausage-store-backend.service
-
-
-#build-backend-code-job:
-#    stage: build
-#    only:
-#     changes:
-#     - backend/**/*
-#      - .gitlab-ci.yml
-#      - devops/.*.yml
-#    script:
-#      - cd backend
-#      - mvn package -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository -Dversion.application=${VERSION}
-#   artifacts:
-#    paths:
-#     - backend/target/sausage-store-${VERSION}.jar
-#     - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST 
-
-#upload-backend-release:
-# stage: release
-# only:
-#    changes:
-#     - backend/**/*
-#     - .gitlab-ci.yml
-#     - devops/.*.yml
-# needs:
-#   - build-backend-code-job
-# script:
-#   - cd backend
-#   - mvn -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/repository -s settings.xml -Dversion.application=${VERSION} -DskipTests deploy
 
 notification-backend:
   stage: notify
@@ -123,17 +60,6 @@ notification-backend:
   needs:
     - release
 
-
-#slack-notification-backend:
-#  stage: notify
-#  only:
-#   variables:
-#   - $CI_COMMIT_MESSAGE =~ /send notification/
-# script:
-#   - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал back при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-backend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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 
-# needs:
-#   - build-backend-code-job
-
 before_script:
   #устанавливаем ssh-agent для удобства аутентификации по ssh
   - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client wget openjdk-11-jdk -y )'
@@ -148,7 +74,7 @@ before_script:
 
   #Скачиваем и устанавливаем сертификат YANDEX
   - wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O YandexInternalRootCA.crt
-  - keytool -importcert -file YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -norompt
+  - keytool -importcert -file YandexInternalRootCA.pem -alias yandex -cacerts -storepass changeit -noprompt
 
 
 deploy:
