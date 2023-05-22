@@ -62,7 +62,7 @@ notification-backend:
 
 before_script:
   #устанавливаем ssh-agent для удобства аутентификации по ssh
-  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client wget openjdk-11-jdk -y )'
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   #сохраняем сгенеренный ранее приватный ключ для раннера
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
@@ -73,8 +73,8 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
 
   #Скачиваем и устанавливаем сертификат YANDEX
-  - wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O ~/YandexInternalRootCA.crt
-  - keytool -importcert -file ~/YandexInternalRootCA.crt -alias yandex -cacerts -storepass changeit -noprompt
+  #- wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O ~/YandexInternalRootCA.crt
+  #- keytool -importcert -file ~/YandexInternalRootCA.crt -alias yandex -cacerts -storepass changeit -noprompt
 
 
 deploy:
