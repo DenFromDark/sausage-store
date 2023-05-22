@@ -1,11 +1,11 @@
 [Unit]
 Description=Sausage-store
 
-
 [Service]
 User=jarservice
 Environment=REPORT_PATH=/log/reports
 Environment=LOG_PATH=/opt/log
+EnvironmentFile=/home/jarservice/sausage-store-backend.env
 StandardOutput=append:/opt/log/sausage-store-backend.log
 Restart=always
 ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
@@ -14,14 +14,13 @@ ExecStart=/usr/lib/jvm/java-16-openjdk-amd64/bin/java \
     -Dmyserver.bindPort='8080' \
     -Dmyserver.hostName='Sausage-store' \
     -jar '/home/jarservice/sausage-store.jar'
-
+    --spring.datasource.url=jdbc:postgresql://$PSQL_HOST:$PSQL_PORT/$PSQL_BASE
+    --spring.datasource.username=$PSQL_USER
+    --spring.datasource.password=$PSQL_PASS     
+        
 ExecStartPre=+/bin/chown jarservice:jarservice /opt/log/sausage-store-backend.log
 SuccessExitStatus=143
 KillMode=process
-
---spring.datasource.url=jdbc:postgresql://rc1b-gd5us5uiz7c0ptw6.mdb.yandexcloud.net:6432/DenFromDark
---spring.datasource.username=DenFromDark
---spring.datasource.password=Testusr1234
 
 [Install]
 WantedBy=multi-user.target

@@ -34,7 +34,7 @@ frontend:
 #    - template: "Security/SAST.gitlab-ci.yml"
     strategy: depend
   only:
-    changes: 
+    changes:
       - frontend/**/*
       - .gitlab-ci.yml
       - devops/.frontend.yml
@@ -49,7 +49,8 @@ backend:
 #    - template: "Security/SAST.gitlab-ci.yml"
     strategy: depend
   only:
-    changes: 
+    changes:
+      - backend/**/*
       - backend/*
       - .gitlab-ci.yml
       - devops/.backend.yml
