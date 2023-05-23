@@ -42,35 +42,6 @@ release:
     - devops/deploy_front.sh
     - devops/sausage-store-frontend.service
 
-#build-frontend-code-job:
-#    stage: build
-#    only:
-#      changes:
-#      - frontend/*
-#      - .gitlab-ci.yml
-#      - devops/.*.yml
-#    script:
-#      - cd frontend
-#      - npm install
-#      - npm run build
-#    artifacts:
-#      paths:
-#        - frontend/dist/frontend
-#        - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST
-#
-#upload-frontend-release:
-#  stage: release
-#  only:
-#    changes:
-#      - frontend/**/*
-#      - .gitlab-ci.yml
-#      - devops/.*.yml
-#  needs:
-#    - build-frontend-code-job
-#  script:
-#    - cd frontend/dist
-#   - tar czvf sausage-store-${VERSION}.tar.gz frontend
-#    - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
 notification-frontend:
   stage: notify
   only:
@@ -85,16 +56,6 @@ notification-frontend:
     - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$PACHKA_WEBHOOK"'
   needs:
     - release
-
-#slack-notification-frontend:
-#    stage: notify
-#    only:
-#     variables:
-#     - $CI_COMMIT_MESSAGE =~ /send notification/
-#   script:
-#     - curl -X POST -H "Content-type:/ application/json" --data '{"text":"Денис Понизовский собрал front при помощи Gitlab CI. <https://gitlab.praktikum-services.ru/api/v4/projects/1143/jobs/artifacts/release-0.0.1/download?job=build-frontend-code-job&private_token=346sb6Y4ocmMyc2i-sNN|Скачать артефакты>"}' https://hooks.slack.com/services/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
-#   needs:
-#      - build-frontend-code-job
 
 before_script:
   #устанавливаем ssh-agent для удобства аутентификации по ssh
