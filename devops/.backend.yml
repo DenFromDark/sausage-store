@@ -132,7 +132,7 @@ build-backend:
     - cd backend
     - >
       docker build
-     # --build-arg VERSION=$VERSION
+      --build-arg VERSION=1.0.0.111111
       --tag $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
       .
     - docker push $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
