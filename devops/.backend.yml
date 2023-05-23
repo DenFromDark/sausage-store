@@ -111,6 +111,7 @@
 #  https://gitlab.praktikum-services.ru/templates/ci/-/blob/main/DockerInDockerTemplate.yml
 # использовать в задачах сборки в качестве образа стабильную версию образа Docker:dind docker:20.10.12-dind-rootless
 #
+
 include:
   - project: 'templates/ci'
     file: 'DockerInDockerTemplate.yml'
