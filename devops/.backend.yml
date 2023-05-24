@@ -113,7 +113,7 @@
 #
 
 include:
-  - project: '../templates/ci'
+  - project: 'templates/ci'
     file: 'DockerInDockerTemplate.yml'
 
 variables:
