@@ -41,34 +41,26 @@ upload-frontend-latest:
     - docker pull $CI_REGISTRY_IMAGE/sausage-frontend:$CI_COMMIT_SHA
     - docker tag $CI_REGISTRY_IMAGE/sausage-frontend:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/sausage-frontend:latest
     - docker push $CI_REGISTRY_IMAGE/sausage-frontend:latest
-#
-#release:
-#  stage: release
-#  script:
-#    - tar czvf sausage-store-${VERSION}.tar.gz frontend
-#    - curl -v -u "${NEXUS_REPO_USER}:${NEXUS_REPO_PASS}" --upload-file sausage-store-${VERSION}.tar.gz ${NEXUS_REPO_URL}/sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz
-#  only:
-#    changes:
-#    - frontend/*
-#    - .gitlab-ci.yml
-#    - devops/.frontend.yml
-#    - devops/deploy_front.sh
-#    - devops/sausage-store-frontend.service
-#
-#notification-frontend:
-#  stage: notify
-#  only:
-#    variables:
-#      - $CI_COMMIT_MESSAGE =~ /send version/
-#  variables:
-#    DATA: '{"message":"Вышла новая версия Frontend сосисочной — ${VERSION}. Скачать Frontend можно по ссылке — ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-frontend/sausage-store/${VERSION}/sausage-store-${VERSION}.tar.gz"}'
-#    CONTENT_TYPE: 'Content-type: application/json'
-#    PACHKA_WEBHOOK: 'https://api.pachca.com/webhooks/01GKW5NQ2PPC9V9CGACZ6SE94Z'
-#  script:
-#    - printenv
-#    - 'curl -X POST -H "$CONTENT_TYPE" --data "$DATA" "$PACHKA_WEBHOOK"'
-#  needs:
-#    - release
+
+deploy-frontend:
+  stage: deploy
+  image: alpine:3.15.0
+  # если хотим сделать деплой по кнопке
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: manual
+  before_script:
+    - apk add openssh-client bash
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 600 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - ssh ${DEV_USER}@${DEV_HOST} /bin/bash -s" < ./devops/deploy_front.sh
 #
 #before_script:
 #  #устанавливаем ssh-agent для удобства аутентификации по ssh
