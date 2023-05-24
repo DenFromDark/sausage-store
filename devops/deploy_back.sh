@@ -25,6 +25,7 @@ SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
 SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
 SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}
 EOF
+docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
 docker network create -d bridge sausage_network || true
 docker pull gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-backend:latest
 docker stop backend || true
