@@ -60,7 +60,7 @@ deploy-frontend:
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - ssh ${DEV_USER}@${DEV_HOST} /bin/bash -s" < ./devops/deploy_front.sh
+    - ssh ${DEV_USER}@${DEV_HOST} "/bin/bash -s" < ./devops/deploy_front.sh
 #
 #before_script:
 #  #устанавливаем ssh-agent для удобства аутентификации по ssh
