@@ -28,18 +28,14 @@ build-frontend:
       --tag $CI_REGISTRY_IMAGE/sausage-frontend:$CI_COMMIT_SHA
       .
     - docker push $CI_REGISTRY_IMAGE/sausage-frontend:$CI_COMMIT_SHA
-    
-#  artifacts:
-#    paths:
-#      - frontend/dist/frontend
-#      - ${CI_PROJECT_DIR}/.m2/ # Сохранение зависимостей для SAST
-#  only:
-#    changes:
-#    - frontend/*
-#    - .gitlab-ci.yml
-#    - devops/.frontend.yml
-#    - devops/deploy_front.sh
-#    - devops/sausage-store-frontend.service
+
+upload-frontend-latest:
+  variables:
+    GIT_STRATEGY: none
+  image: docker:20.10.12-dind-rootless
+  stage: release
+  before_script:
+    - until docker info; do sleep 1; done
 #
 #release:
 #  stage: release
