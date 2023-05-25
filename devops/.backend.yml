@@ -152,9 +152,6 @@ spotbugs-backend-test:
 
 build-backend:
   stage: build
-  dependencies: 
-    - sonarqube-backend-test
-    - spotbugs-backend-test
   image: docker:20.10.12-dind-rootless
   before_script:
     - until docker info; do sleep 1; done
@@ -170,8 +167,6 @@ build-backend:
     - docker push $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
 
 upload-backend-latest:
-  dependecies:
-    - build-backend
   variables:
     GIT_STRATEGY: none
   image: docker:20.10.12-dind-rootless
@@ -187,8 +182,6 @@ upload-backend-latest:
 
 deploy-backend:
   stage: deploy
-  dependencies:
-    - upload-backend-latest
   image: alpine:3.15.0
   # если хотим сделать деплой по кнопке
   #rules:

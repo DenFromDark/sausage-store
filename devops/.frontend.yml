@@ -28,10 +28,7 @@ sonarqube-frontend-test:
       -Dsonar.host.url=${URL_SONAR}
       -Dsonar.login=${LOGIN_SONAR}
 
-
 build-frontend:
-  dependencies:
-    - sonarcube-frontend-test
   stage: build
   image: docker:20.10.12-dind-rootless
   before_script:
@@ -47,8 +44,6 @@ build-frontend:
     - docker push $CI_REGISTRY_IMAGE/sausage-frontend:$CI_COMMIT_SHA
 
 upload-frontend-latest:
-  dependencies:
-    - build-frontend
   variables:
     GIT_STRATEGY: none
   image: docker:20.10.12-dind-rootless
