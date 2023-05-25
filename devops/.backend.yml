@@ -121,9 +121,24 @@ variables:
   JAVA_OPTS: -XX:MaxRAMPercentage=90 # для того, чтобы Maven не съел всю свободную оперативку
 
 stages:
+  - test
   - build
   - release
   - deploy
+
+sonarqube-backend-test:
+  stage: test
+  image:
+    name: maven:3.8-openjdk-16
+  script:
+    - cd backend
+    - >
+      mvn verify sonar:sonar
+      -Dsonar.qualitygate.wait=true
+      -Dsonar.projectName=${KEY_BACK_SONAR}
+      -Dsonar.projectKey=${KEY_BACK_SONAR}
+      -Dsonar.host.url=${URL_SONAR}
+      -Dsonar.login=${LOGIN_BACK_SONAR}
 
 build-backend:
   stage: build
