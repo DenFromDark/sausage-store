@@ -175,7 +175,7 @@ deploy-backend:
   script:
     - ssh ${DEV_USER}@${DEV_HOST}
       "export "VERSION=${VERSION}";
-       export "SPRING_DATASOURCE_URL=djbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}";
+       export "SPRING_DATASOURCE_URL=jdbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}";
        export "SPRING_DATASOURCE_USERNAME=${PSQL_USER}";
        export "SPRING_DATASOURCE_PASSWORD=${PSQL_PASS}";
        export "SPRING_DATA_MONGODB_URI=${MONGO_HOST}";
