@@ -142,6 +142,7 @@ sonarqube-backend-test:
 
 build-backend:
   stage: build
+  dependency: sonarqube-backend-test
   image: docker:20.10.12-dind-rootless
   before_script:
     - until docker info; do sleep 1; done
