@@ -115,7 +115,6 @@
 include:
   - project: 'templates/ci'
     file: 'DockerInDockerTemplate.yml'
-  - template: Security/Container-Scanning.gitlab-ci.yml
     
 variables:
   VERSION: 1.0.${CI_PIPELINE_ID}
@@ -158,6 +157,8 @@ sonarqube-backend-test:
       -Dsonar.login=${LOGIN_BACK_SONAR}
 
 container-scaning:
+  include:   
+    - template: Security/Container-Scanning.gitlab-ci.yml
   stage: test
   container_scanning:
     variables:
