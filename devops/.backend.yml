@@ -115,7 +115,8 @@
 include:
   - project: 'templates/ci'
     file: 'DockerInDockerTemplate.yml'
-
+  - template: Security/SAST.gitlab-ci.yml
+    
 variables:
   VERSION: 1.0.${CI_PIPELINE_ID}
   JAVA_OPTS: -XX:MaxRAMPercentage=90 # для того, чтобы Maven не съел всю свободную оперативку
@@ -158,11 +159,14 @@ sonarqube-backend-test:
 
 spotbugs-backend-test:
   stage: test
-  include: 
-    - template: templates/ci/Container-Scanning.gitlab-ci.yml
   container_scanning:
     variables:
+      COMPILE: "false"
+      SAST_JAVA_VERSION: 16
       CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
 
 upload-backend-latest:
   variables:
