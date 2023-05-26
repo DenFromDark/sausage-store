@@ -159,7 +159,7 @@ sonarqube-backend-test:
 spotbugs-backend-test:
   stage: test
   include: 
-    - template: Security/Container-Scanning.gitlab-ci.yml
+    - template: templates/ci/Container-Scanning.gitlab-ci.yml
   container_scanning:
     variables:
       CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
