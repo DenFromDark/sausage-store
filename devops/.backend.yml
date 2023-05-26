@@ -157,16 +157,16 @@ sonarqube-backend-test:
       -Dsonar.host.url=${URL_SONAR}
       -Dsonar.login=${LOGIN_BACK_SONAR}
 
-spotbugs-backend-test:
+container-scaning:
   stage: test
   container_scanning:
     variables:
-      COMPILE: "false"
-      SAST_JAVA_VERSION: 16
+      #COMPILE: "false"
+      #SAST_JAVA_VERSION: 16
       CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
-  artifacts:
-    reports:
-      sast: gl-sast-report.json
+  #artifacts:
+  #  reports:
+  #    sast: gl-sast-report.json
 
 upload-backend-latest:
   variables:
