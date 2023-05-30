@@ -158,8 +158,7 @@ sonarqube-backend-test:
 
 container-scaning:
   include:   
-    - project: 'templates/ci'
-      file: 'Container-Scanning.gitlab-ci.yml'
+    - template: templates/ci/Container-Scanning.gitlab-ci.yml
   stage: test
   container_scanning:
     variables:
