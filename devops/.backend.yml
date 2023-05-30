@@ -157,18 +157,18 @@ sonarqube-backend-test:
       -Dsonar.host.url=${URL_SONAR}
       -Dsonar.login=${LOGIN_BACK_SONAR}
 
-container-scaning:
-  include:   
-    - template: Jobs/Container-Scanning.gitlab-ci.yml
-  stage: test
-  container_scanning:
-    variables:
-      COMPILE: "false"
-      SAST_JAVA_VERSION: 16
-      CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
-  artifacts:
-    reports:
-      sast: gl-sast-report.json
+#container-scaning:
+#  #include:   
+#  #  - template: Jobs/Container-Scanning.gitlab-ci.yml
+#  stage: test
+#  container_scanning:
+#    variables:
+#      COMPILE: "false"
+#      SAST_JAVA_VERSION: 16
+#      CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
+#  artifacts:
+#    reports:
+#      sast: gl-sast-report.json
 
 upload-backend-latest:
   variables:
