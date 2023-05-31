@@ -28,8 +28,6 @@ REGISTRY_USER=${REGISTRY_USER}
 REGISTRY_PASSWORD=${REGISTRY_PASSWORD}
 REGISTRY=${REGISTRY}
 EOF
-#docker login --env-file .env \
-#    -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
 docker network create -d bridge sausage_network || true
 docker pull gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-backend:latest
 docker stop backend || true
