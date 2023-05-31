@@ -6,5 +6,5 @@ COPY . .
 RUN npm install \
     && npm install -g http-server \
     && npm run build
-EXPOSE 80
-ENTRYPOINT ["http-server", "dist/frontend/", "-p", "80", "--proxy", "http://backend:8080"]
+#EXPOSE 80
+CMD ["http-server", "dist/frontend/", "-p", "80", "--proxy", "http://backend:8080"]
