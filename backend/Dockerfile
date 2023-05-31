@@ -9,14 +9,13 @@ WORKDIR /usr/src/app
 COPY ./src ./src
 COPY *.xml ./
 # копируем CA-сертификат Яндекса в образ
-RUN curl https://storage.yandexcloud.net/cloud-certs/CA.pem -o YandexInternalRootCA.crt \
-    && mvn package -Dversion.application=${VERSION}
+RUN mvn package -Dversion.application=${VERSION}
 
 # release
 FROM openjdk:16-jdk-alpine
 ARG VERSION=${VERSION}
 WORKDIR /app
-COPY --from=builder /usr/src/app/YandexInternalRootCA.crt .
+ADD https://storage.yandexcloud.net/cloud-certs/CA.pem ./YandexInternalRootCA.crt
 # подкидываем CA-сертификат Яндекса в хранилище сертификатов для Java
 # создаём пользователя jaruser
 RUN keytool -importcert -file YandexInternalRootCA.crt \
