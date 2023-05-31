@@ -1,28 +1,3 @@
-#before_script:
-#  #устанавливаем ssh-agent для удобства аутентификации по ssh
-#  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-#  - eval $(ssh-agent -s)
-#  #сохраняем сгенеренный ранее приватный ключ для раннера
-#  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-#  - mkdir -p ~/.ssh
-#  - chmod 600 ~/.ssh
-#  #Добавляем хост
-#  - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-#  - chmod 644 ~/.ssh/known_hosts
-
-#stages:
-#  - deploy
-#
-#deploy:
-#  stage: deploy
-#  script:
-#  - ssh ${DEV_USER}@${DEV_HOST}
-#  # скачиваем ранее собранный артефакт с Nexus. При этом необходимо заранее
-#  # прописать креды от Nexus в переменные в настройке пайплайна
-#  - curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} -o sausage-store-${VERSION}.jar ${NEXUS_REPO_URL}sausage-store-ponizovskiy-denis-backend/com/yandex/practicum/devops/sausage-store/${VERSION}/sausage-store-${VERSION}.jar
-# # запускаем бэкенд  
-#  - java -jar sausage-store-${VERSION}.jar & 
-
 stages:
   - module-pipelines
 
@@ -31,7 +6,7 @@ frontend:
   trigger:
     include:
       devops/.frontend.yml
-#    - template: "Security/SAST.gitlab-ci.yml"
+
     strategy: depend
   only:
     changes:
@@ -46,7 +21,7 @@ backend:
   trigger:
     include:
       devops/.backend.yml
-#    - template: "Security/SAST.gitlab-ci.yml"
+
     strategy: depend
   only:
     changes:
@@ -56,14 +31,3 @@ backend:
       - devops/.backend.yml
       - devops/deploy_back.sh
       - devops/sausage-store-backend.service
-
-#variables:
-#  VERSION: 1.0.${CI_PIPELINE_ID}
-#  MAVEN_REPO_PATH: ${CI_PROJECT_DIR}/.m2/repository
-
-#stages:
-#  - build
-#  - test
-# - release
-#  - notify
-# - deploy
