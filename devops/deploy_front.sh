@@ -22,6 +22,7 @@ set +e
 docker pull gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:latest
 docker stop frontend || true
 docker rm frontend || true
+
 set -e
 docker run -d --name frontend \
     --network=sausage_network \
