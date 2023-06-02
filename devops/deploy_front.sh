@@ -28,7 +28,6 @@ docker run -d --name frontend \
     --network=sausage_network \
     --restart always \
     --pull always \
-    -p 80 \
     gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:latest
 
 #docker inspect frontend | grep IPAddress > ./frontIP.env

@@ -38,5 +38,4 @@ docker run -d --name backend \
     --restart always \
     --pull always \
     --env-file .env \
-    -p 8080 \
     gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-backend:latest 
