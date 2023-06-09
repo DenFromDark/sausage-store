@@ -26,6 +26,7 @@ docker rm frontend || true
 set -e
 docker run -d --name frontend \
     --network=sausage_network \
+    --ip 172.18.0.3 \
     --restart always \
     --pull always \
     -p 80 \
