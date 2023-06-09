@@ -33,11 +33,13 @@
     
     <dependencyManagement>
         <dependencies>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependecies</artifactId>
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependecies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>    
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
