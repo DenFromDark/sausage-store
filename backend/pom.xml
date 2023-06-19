@@ -21,10 +21,10 @@
     <name>sausage-store</name>
     <description>Backend for sausage-store</description>
     <properties>
-        <java.version>16</java.version>
+        <!--<java.version>16</java.version>
         <sonar.projectKey>test_manual</sonar.projectKey>
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>-->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
@@ -32,6 +32,7 @@
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     </properties>
     
+<!--
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -43,13 +44,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+!-->
+
     <dependencies>
 
+<!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-vault-config</artifactId>
         </dependency>
+-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
