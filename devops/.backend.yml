@@ -113,8 +113,8 @@
 #
 
 include:
-  - project: 'templates/ci'
-    file: 'DockerInDockerTemplate.yml'
+#  - project: 'templates/ci'
+#    file: 'DockerInDockerTemplate.yml'
 #  - template: Jobs/Container-Scanning.gitlab-ci.yml
     
 variables:
