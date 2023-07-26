@@ -1,6 +1,6 @@
-include:
-  - project: 'templates/ci'
-    file: 'DockerInDockerTemplate.yml'
+#include:
+#  - project: 'templates/ci'
+#    file: 'DockerInDockerTemplate.yml'
 
 #cache:
 #  paths:
