@@ -1,6 +1,10 @@
 stages:
   - module-pipelines
 
+job_name:
+  script:
+    - export
+
 frontend:
   stage: module-pipelines
   trigger:
