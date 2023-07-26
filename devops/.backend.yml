@@ -195,7 +195,6 @@ deploy-backend:
   #  - if: '$CI_COMMIT_BRANCH == "master"'
   #    when: manual
 
-
   before_script:
     - apk add openssh-client bash
     - eval $(ssh-agent -s)
