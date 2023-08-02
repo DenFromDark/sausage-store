@@ -80,7 +80,7 @@ upload-backend-latest:
     
 deploy-backend:
   stage: deploy
-  image: vault:1.11.3
+  image: docker:20.10.12-dind-rootless #vault:1.11.3
 
   # если хотим сделать деплой по кнопке
   #rules:
