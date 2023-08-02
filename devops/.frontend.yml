@@ -1,10 +1,10 @@
-#include:
-#  - project: 'templates/ci'
-#    file: 'DockerInDockerTemplate.yml'
+include:
+  - project: 'templates/ci'
+    file: 'DockerInDockerTemplate.yml'
 
-#cache:
-#  paths:
-#    - frontend/dist/frontend
+cache:
+  paths:
+    - frontend/dist/frontend
 
 
 variables:

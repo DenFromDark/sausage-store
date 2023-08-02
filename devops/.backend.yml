@@ -112,9 +112,9 @@
 # использовать в задачах сборки в качестве образа стабильную версию образа Docker:dind docker:20.10.12-dind-rootless
 #
 
-#include:
-#  - project: 'templates/ci'
-#    file: 'DockerInDockerTemplate.yml'
+include:
+  - project: 'templates/ci'
+    file: 'DockerInDockerTemplate.yml'
 #  - template: Jobs/Container-Scanning.gitlab-ci.yml
     
 variables:
