@@ -19,6 +19,7 @@
 #!/bin/bash
 set +e
 
+docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
 docker pull gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:latest
 docker stop frontend || true
 docker rm frontend || true

@@ -77,7 +77,11 @@ deploy-frontend:
     - chmod 644 ~/.ssh/known_hosts
     
   script:
-    - ssh ${DEV_USER}@${DEV_HOST} "/bin/bash -s" < ./devops/deploy_front.sh
+    - ssh ${DEV_USER}@${DEV_HOST} 
+      "export "REGISTRY=${CI_REGISTRY}";
+       export "REGISTRY_USER=${CI_REGISTRY_USER}";
+       export "REGISTRY_PASSWORD=${CI_REGISTRY_PASSWORD}";
+       /bin/bash -s" < ./devops/deploy_front.sh
 #
 #before_script:
 #  #устанавливаем ssh-agent для удобства аутентификации по ssh
