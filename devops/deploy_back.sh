@@ -35,7 +35,6 @@ docker rm backend || true
 set -e
 docker run -d --name backend \
     --network=sausage_network \
-    #--ip=172.18.0.2 \
     --restart always \
     --pull always \
     --env-file .env \
