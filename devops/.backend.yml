@@ -106,6 +106,9 @@ deploy-backend:
     - echo $SPRING_DATASOURCE_PASSWORD
     - ssh ${DEV_USER}@${DEV_HOST}
       "export "VERSION=${VERSION}";
+       export "REGISTRY=${CI_REGISTRY}";
+       export "REGISTRY_USER=${CI_REGISTRY_USER}";
+       export "REGISTRY_PASSWORD=${CI_REGISTRY_PASSWORD}";
        export "SPRING_DATASOURCE_URL=jdbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}";
        export "SPRING_DATASOURCE_USERNAME=$(vault kv get -field=spring.datasource.username secret/sausage-store)";
        export "SPRING_DATASOURCE_PASSWORD=$(vault kv get -field=spring.datasource.password secret/sausage-store)";
