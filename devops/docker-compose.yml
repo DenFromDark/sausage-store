@@ -1,0 +1,43 @@
+version: "3.3"
+
+services:      # список сервисов
+  backend:     # название сервиса
+    # инструктируем docker-compose откуда брать образ
+    image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend:${BACKEND_VERSION}
+    # бэкенд будет доступен для соседей по этому имени
+    container_name: sausage-store-backend
+    # переменные окружения, приложение читает и использует
+    # их как параметры конфигурации
+    environment:
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DATABASE}
+      SPRING_FLYWAY_BASELINE-ON-MIGRATE: "true" 
+    # в какой сети запускать контейнер
+    networks:
+      - sausage-store 
+
+  backend-report:
+    build:
+      context: ../backend-report
+      dockerfile: Dockerfile 
+    image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend-report:${BACKEND_REPORT_VERSION}
+    container_name: sausage-store-backend-report
+    environment:
+      DB: ${REPORTS_MONGODB_URI}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DATABASE}
+    networks:
+      - sausage-store
+  
+  frontend:
+    image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/frontend:${FRONTEND_VERSION}
+    container_name: sausage-store-frontend
+    ports:
+      - "80:80"
+    networks:
+      - sausage-store
+
+networks:
+  sausage-store:
