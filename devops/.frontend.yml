@@ -80,6 +80,7 @@ deploy-frontend:
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker-compose --context sausage-store up -d --remove-orphans frontend
 
+
 #    - ssh ${DEV_USER}@${DEV_HOST} 
 #      "export "REGISTRY=${CI_REGISTRY}";
 #       export "REGISTRY_USER=${CI_REGISTRY_USER}";
