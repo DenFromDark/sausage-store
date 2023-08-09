@@ -45,7 +45,3 @@ backend-report:
       - backend-report/*
       - .gitlab-ci.yml
       - devops/.backend-report.yml
-
-  needs:
-    - upload-backend-latest
-    - upload-frontend-latest
