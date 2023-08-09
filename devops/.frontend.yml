@@ -68,7 +68,7 @@ deploy-frontend:
   #  - if: '$CI_COMMIT_BRANCH == "master"'
   #    when: manual
   before_script:
-    - apk add openssh-client bash docker docker-compose
+    - apk add openssh-client bash docker docker-compose-plugin
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -78,6 +78,7 @@ deploy-frontend:
     
   script:
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
+    - docker context use sausage-store
     - docker-compose --context sausage-store up -d --remove-orphans frontend
 
 
