@@ -14,7 +14,7 @@ stages:
    #- test
    - build
    - release
-   #- deploy
+   - deploy
 
 #sonarqube-frontend-test:
 #  stage: test
