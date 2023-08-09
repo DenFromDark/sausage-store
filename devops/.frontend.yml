@@ -14,7 +14,7 @@ stages:
    #- test
    - build
    - release
-   - deploy
+   #- deploy
 
 #sonarqube-frontend-test:
 #  stage: test
@@ -58,30 +58,30 @@ upload-frontend-latest:
     - docker push $CI_REGISTRY_IMAGE/sausage-frontend:latest
 
 
-deploy-frontend:
-  stage: deploy
-  image: alpine:3.15.0
-  # если хотим сделать деплой по кнопке
-  #rules:
-  #  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  #    when: manual
-  #  - if: '$CI_COMMIT_BRANCH == "master"'
-  #    when: manual
-  before_script:
-    - apk add openssh-client bash
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 600 ~/.ssh
-    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    
-  script:
-    - ssh ${DEV_USER}@${DEV_HOST} 
-      "export "REGISTRY=${CI_REGISTRY}";
-       export "REGISTRY_USER=${CI_REGISTRY_USER}";
-       export "REGISTRY_PASSWORD=${CI_REGISTRY_PASSWORD}";
-       /bin/bash -s" < ./devops/deploy_front.sh
+#deploy-frontend:
+#  stage: deploy
+#  image: alpine:3.15.0
+#  # если хотим сделать деплой по кнопке
+#  #rules:
+#  #  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+#  #    when: manual
+#  #  - if: '$CI_COMMIT_BRANCH == "master"'
+#  #    when: manual
+#  before_script:
+#    - apk add openssh-client bash
+#    - eval $(ssh-agent -s)
+#    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+#    - mkdir -p ~/.ssh
+#    - chmod 600 ~/.ssh
+#    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+#    - chmod 644 ~/.ssh/known_hosts
+#    
+#  script:
+#    - ssh ${DEV_USER}@${DEV_HOST} 
+#      "export "REGISTRY=${CI_REGISTRY}";
+#       export "REGISTRY_USER=${CI_REGISTRY_USER}";
+#       export "REGISTRY_PASSWORD=${CI_REGISTRY_PASSWORD}";
+#       /bin/bash -s" < ./devops/deploy_front.sh
 #
 #before_script:
 #  #устанавливаем ssh-agent для удобства аутентификации по ssh

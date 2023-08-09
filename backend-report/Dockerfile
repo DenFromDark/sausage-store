@@ -1,6 +1,8 @@
 FROM python:latest
-ADD app /app
+COPY . .
 WORKDIR /app
+ADD app.py /app
+ADD requirements.txt
 RUN pip install -r requirements.txt
 ENTRYPOINT ["python"]
 CMD ["app.py"]
