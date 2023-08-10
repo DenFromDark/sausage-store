@@ -18,9 +18,6 @@ services:      # список сервисов
       - sausage-store 
 
   backend-report:
-#    build:
-#      context: backend-report/
-#      dockerfile: Dockerfile
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend-report:${BACKEND_REPORT_VERSION}
     container_name: sausage-store-backend-report
     environment:
