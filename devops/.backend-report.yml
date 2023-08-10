@@ -90,7 +90,7 @@ deploy-backend-latest:
   script:
     
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
-    - docker context use general
+    - docker context use default
     - docker-compose --context sausage-store up -d --remove-orphans backend-report
     
 #    - ssh ${DEV_USER}@${DEV_HOST}
