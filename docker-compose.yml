@@ -29,7 +29,7 @@ services:      # список сервисов
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:${FRONTEND_VERSION}
     container_name: sausage-store-frontend
     ports:
-      - "8088:80"
+      - "80:80"
     networks:
       - sausage-store
 

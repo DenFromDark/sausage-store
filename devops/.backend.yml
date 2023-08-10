@@ -9,7 +9,7 @@
 include:
   - project: 'templates/ci'
     file: 'DockerInDockerTemplate.yml'
-#  - template: Jobs/Container-Scanning.gitlab-ci.yml
+
     
 variables:
   VERSION: 1.0.${CI_PIPELINE_ID}
@@ -17,6 +17,7 @@ variables:
 
 stages:
   - build
+  #- test
   - release
   - deploy
 
@@ -25,7 +26,6 @@ build-backend:
   image: docker:20.10.12-dind-rootless
   before_script:
     - until docker info; do sleep 1; done
-    # переменные CI_REGISTRY_USER, CI_REGISTRY_PASSWORD, CI_REGISTRY генерятся Гитлабом, их задавать не надо
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - cd backend
@@ -51,19 +51,6 @@ build-backend:
 #      -Dsonar.host.url=${URL_SONAR}
 #      -Dsonar.login=${LOGIN_BACK_SONAR}
 
-#container-scaning:
-#  #include:   
-#  #  - template: Jobs/Container-Scanning.gitlab-ci.yml
-#  stage: test
-#  container_scanning:
-#    variables:
-#      COMPILE: "false"
-#      SAST_JAVA_VERSION: 16
-#      CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
-#  artifacts:
-#    reports:
-#      sast: gl-sast-report.json
-
 upload-backend-latest:
   variables:
     GIT_STRATEGY: none
@@ -74,7 +61,6 @@ upload-backend-latest:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker pull $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA
-    # если образ прошел проверки в CI (сканирование, тесты и т.д), то тегаем latest
     - docker tag $CI_REGISTRY_IMAGE/sausage-backend:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/sausage-backend:latest
     - docker push $CI_REGISTRY_IMAGE/sausage-backend:latest
     
@@ -112,14 +98,3 @@ deploy-backend:
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
     - docker-compose --context sausage-store up -d --remove-orphans backend
-    
-#    - ssh ${DEV_USER}@${DEV_HOST}
-#      "export "VERSION=${VERSION}";
-#       export "REGISTRY=${CI_REGISTRY}";
-#       export "REGISTRY_USER=${CI_REGISTRY_USER}";
-#       export "REGISTRY_PASSWORD=${CI_REGISTRY_PASSWORD}";
-#       export "SPRING_DATASOURCE_URL=jdbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}";
-#       export "SPRING_DATASOURCE_USERNAME=$(vault kv get -field=spring.datasource.username secret/sausage-store)";
-#       export "SPRING_DATASOURCE_PASSWORD=$(vault kv get -field=spring.datasource.password secret/sausage-store)";
-#       export "SPRING_DATA_MONGODB_URI=$(vault kv get -field=spring.data.mongodb.uri secret/sausage-store)";
-#       /bin/bash -s" < ./devops/deploy_back.sh
