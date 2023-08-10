@@ -68,7 +68,7 @@ deploy-frontend:
   #  - if: '$CI_COMMIT_BRANCH == "master"'
   #    when: manual
   before_script:
-    - apk add openssh-client bash docker-compose-plugin
+    - apk add openssh-client bash
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -76,12 +76,16 @@ deploy-frontend:
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
-#    - DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-#    - mkdir -p $DOCKER_CONFIG/cli-plugins
-#    - curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
-#    - chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-#    - docker compose version    
-    
+  #  - DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+  #  - mkdir -p $DOCKER_CONFIG/cli-plugins
+  #  - curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+  #  - chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+  #  - docker compose version    
+
+     - curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+     - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+
   script:
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use sausage-store
