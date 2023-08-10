@@ -28,6 +28,8 @@ services:      # список сервисов
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_DATASOURCE_URL: jdbc:postgresql://${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DATABASE}
+      VERSION: ${VERSION}
+      SPRING_DATA_MONGODB_URI: $(vault kv get -field=spring.data.mongodb.uri secret/sausage-store)
     networks:
       - sausage-store
   
