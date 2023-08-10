@@ -24,12 +24,7 @@ services:      # список сервисов
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend-report:${BACKEND_REPORT_VERSION}
     container_name: sausage-store-backend-report
     environment:
-      DB: ${REPORTS_MONGODB_URI}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SPRING_DATASOURCE_URL: jdbc:postgresql://${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DATABASE}
-      VERSION: ${VERSION}
-      SPRING_DATA_MONGODB_URI: $(vault kv get -field=spring.data.mongodb.uri secret/sausage-store)
+      DB: ${SPRING_DATA_MONGODB_URI}
     networks:
       - sausage-store
   
