@@ -31,3 +31,17 @@ backend:
       - devops/.backend.yml
       - devops/deploy_back.sh
       - devops/sausage-store-backend.service
+
+backend-report:
+  stage: module-pipelines
+  trigger:
+    include:
+      devops/.backend-report.yml
+
+    strategy: depend
+  only:
+    changes:
+      - backend-report/**/*
+      - backend-report/*
+      - .gitlab-ci.yml
+      - devops/.backend-report.yml
