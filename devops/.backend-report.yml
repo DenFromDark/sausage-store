@@ -28,8 +28,7 @@ build-backend-report:
 
 backend-test:
   stage: test
-  image:
-    name: python:3.9
+  image: python:3.9
   before_script:
         - pip install -r backend-report/requirements.txt
     script:
