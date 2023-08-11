@@ -30,10 +30,10 @@ backend-test:
   stage: test
   image: python:3.9
   before_script:
-        - pip install -r backend-report/requirements.txt
-    script:
-        - pytest -v
-        - python3 -m unittest
+    - pip install -r backend-report/requirements.txt
+  script:
+    - pytest -v
+    - python3 -m unittest
 
 upload-backend-report-latest:
   variables:
