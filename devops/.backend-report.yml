@@ -31,7 +31,9 @@ backend-test:
   image: python:3.9
   before_script:
     - pip install -r backend-report/requirements.txt
+    - pip install -U pytest
   script:
+    - cd backend-report
     - pytest -v
     - python3 -m unittest
 
