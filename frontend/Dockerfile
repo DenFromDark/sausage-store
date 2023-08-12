@@ -4,7 +4,7 @@ FROM node:15.4
 WORKDIR /usr/src/app
 COPY . .
 RUN npm install \
-    && npm install -g http-server \
+    && npm install -g nginx \
     && npm run build
 EXPOSE 80
-CMD ["http-server", "dist/frontend/", "-p", "80", "--proxy", "http://backend:8080"]
+CMD ["nginx", "dist/frontend/", "-p", "80", "--proxy", "http://backend:8080"]
