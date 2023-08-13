@@ -13,9 +13,12 @@ services:      # список сервисов
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_FLYWAY_BASELINE-ON-MIGRATE: "true" 
+      VIRTUAL_HOST: backend
     # в какой сети запускать контейнер
     networks:
       - sausage-store 
+
+
 
   backend-report:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend-report:${BACKEND_REPORT_VERSION}
@@ -24,14 +27,19 @@ services:      # список сервисов
       DB: ${SPRING_DATA_MONGODB_URI}
     networks:
       - sausage-store
-  
-  frontend:
+
+  loadbalancer:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:${FRONTEND_VERSION}
-    container_name: sausage-store-frontend
+    container_name: loadbalancer
     ports:
       - "80:80"
     networks:
       - sausage-store
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      DEFAULT_HOST: backend
+
 
 networks:
   sausage-store:
