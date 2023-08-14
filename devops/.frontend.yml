@@ -90,4 +90,4 @@ deploy-frontend:
     - export FRONTEND_VERSION="latest"
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use sausage-store
-    - docker-compose --context sausage-store up -d --remove-orphans frontend
+    - docker-compose --context sausage-store up -d --remove-orphans loadbalancer
