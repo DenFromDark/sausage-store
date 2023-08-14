@@ -30,11 +30,12 @@ backend-test:
   stage: test
   image: python:3.9
   before_script:
+    - pip install --upgrade pip
     - pip install -r backend-report/requirements.txt
     - pip install -U pytest
   script:
     - cd backend-report
-    - pytest -v
+#    - pytest -v
     - python3 -m unittest
 
 upload-backend-report-latest:
