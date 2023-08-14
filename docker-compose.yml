@@ -30,7 +30,7 @@ services:      # список сервисов
 
   loadbalancer:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:${FRONTEND_VERSION}
-    container_name: frontend
+    container_name: sausage-store-frontend
     ports:
       - "80:80"
     networks:

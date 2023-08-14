@@ -97,4 +97,5 @@ deploy-backend:
     
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
+    - docker-compose --context sausage-store pull
     - docker-compose --context sausage-store up -d --remove-orphans backend
