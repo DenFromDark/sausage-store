@@ -28,7 +28,7 @@ build-backend-report:
 
 #backend-report-test:
 #  stage: test
-#  image: python:3.9
+#  image: python:3.10.12
 #  before_script:
 #    - pip install --upgrade pip
 #    - pip install -r backend-report/requirements.txt
