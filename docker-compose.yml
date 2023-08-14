@@ -13,7 +13,7 @@ services:      # список сервисов
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_FLYWAY_BASELINE-ON-MIGRATE: "true" 
-      VIRTUAL_HOST=backend2
+      VIRTUAL_HOST: backend2
     # в какой сети запускать контейнер
     networks:
       - sausage-store 
@@ -38,7 +38,7 @@ services:      # список сервисов
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-      DEFAULT_HOST=backend2
+      DEFAULT_HOST: backend2
 
 
 networks:
