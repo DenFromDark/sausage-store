@@ -8,7 +8,7 @@ RUN npm install \
 #EXPOSE 80
 #CMD ["http-server", "dist/frontend/", "-p", "80", "--proxy", "http://backend:8080"]
 
-FROM nginx:1.21.6-alpine
+FROM nginxproxy/nginx-proxy
 WORKDIR /app
 COPY --from=builder /usr/src/app/dist/* /usr/share/nginx/html/
 COPY --from=builder /usr/src/app/nginx.tmpl /app/nginx.tmpl
