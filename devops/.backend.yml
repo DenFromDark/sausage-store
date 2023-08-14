@@ -95,7 +95,8 @@ deploy-backend:
     - export SPRING_DATASOURCE_PASSWORD="$(vault kv get -field=spring.datasource.password secret/sausage-store)"
     - echo ${SPRING_DATASOURCE_PASSWORD}
     
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
-    - docker-compose --context sausage-store pull
+    - docker-compose --context sausage-store pull backend
     - docker-compose --context sausage-store up -d --remove-orphans backend
