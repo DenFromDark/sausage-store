@@ -9,4 +9,5 @@ RUN npm install \
 FROM nginx:1.25.1
 WORKDIR /app
 COPY --from=builder /usr/src/app/dist/* /usr/share/nginx/html/
+COPY --from=builder /usr/src/app/nginx.tmpl /etc/nginx/nginx.tmpl
 #EXPOSE 8080
