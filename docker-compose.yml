@@ -37,6 +37,7 @@ services:      # список сервисов
       - sausage-store
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /app/nginx.tmpl:/etc/nginx/nginx.tmpl
     environment:
       DEFAULT_HOST: backend
 
