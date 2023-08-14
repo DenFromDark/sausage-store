@@ -2,7 +2,7 @@
 upstream {{ $host }} {
 
 {{ range $value := $containers }}
-    {{ with $index, $address := index $value.Addresses }}
+    {{ with $address := index $value.Addresses 0 }}
     server {{ $value.Hostname }}:{{ $address.Port }};
     {{ end }}
 {{ end }}
