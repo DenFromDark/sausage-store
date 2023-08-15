@@ -26,7 +26,7 @@ RUN keytool -importcert -file YandexInternalRootCA.crt \
     && apk add --no-cache dumb-init==1.2.5-r0
 COPY --chown=jaruser:jaruser \
      --from=builder /usr/src/app/target/sausage-store-${VERSION}.jar ./sausage-store.jar
-#EXPOSE 8080
+EXPOSE 8080
 # приложение будет запускаться под пользователем jaruser
 USER jaruser
 CMD ["dumb-init", "java", "-jar", "-Dmyserver.bindPort=8080", "./sausage-store.jar"]
