@@ -99,4 +99,6 @@ deploy-backend:
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
     - docker-compose --context sausage-store pull backend
-    - docker-compose --context sausage-store up -d --remove-orphans backend
+    - if docker-compose --context sausage-store ps back_blue | grep -q healthy; then
+      docker-compose --context sausage-store up -d --wait back_green --remove-orphans && docker-compose --context sausage-store stop back_blue; else
+      docker-compose --context sausage-store up -d --wait back_blue --remove-orphans && docker-compose --context sausage-store stop back_green; fi
