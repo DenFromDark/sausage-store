@@ -98,7 +98,7 @@ deploy-backend:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
-    #- docker-compose --context sausage-store pull backen
+    - docker-compose --context sausage-store pull back-blue
     - if docker-compose --context sausage-store ps back_blue | grep -q healthy; then
       docker-compose --context sausage-store up -d --wait back_green --remove-orphans && docker-compose --context sausage-store stop back_blue; else
       docker-compose --context sausage-store up -d --wait back_blue --remove-orphans && docker-compose --context sausage-store stop back_green; fi
