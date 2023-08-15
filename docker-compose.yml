@@ -8,6 +8,7 @@ services:      # список сервисов
     container_name: sausage-store-backend
     # переменные окружения, приложение читает и использует
     # их как параметры конфигурации
+    restart: unless-stopped
     environment:
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
@@ -23,6 +24,7 @@ services:      # список сервисов
   backend-report:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/backend-report:${BACKEND_REPORT_VERSION}
     container_name: sausage-store-backend-report
+    restart: unless-stopped
     environment:
       DB: ${SPRING_DATA_MONGODB_URI}
     networks:
@@ -31,14 +33,15 @@ services:      # список сервисов
   loadbalancer:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-frontend:${FRONTEND_VERSION}
     container_name: sausage-store-frontend
+    restart: unless-stopped
     ports:
       - "80:80"
-    networks:
-      - sausage-store
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       DEFAULT_HOST: backend2
+    networks:
+      - sausage-store
 
 
 networks:
