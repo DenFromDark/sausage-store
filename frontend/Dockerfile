@@ -6,7 +6,7 @@ COPY . .
 RUN npm install \
     && npm run build
 
-FROM nginxproxy/nginx-proxy
+FROM nginxproxy/nginx-proxy:1.2
 WORKDIR /app
 COPY --from=builder /usr/src/app/dist/* /usr/share/nginx/html/
 COPY --from=builder /usr/src/app/nginx.tmpl /app/nginx.tmpl
