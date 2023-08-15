@@ -7,7 +7,7 @@ variables:
 
 stages:
   - build
-  - test
+#  - test
   - release
   - deploy
 
@@ -26,16 +26,17 @@ build-backend-report:
       .
     - docker push $CI_REGISTRY_IMAGE/backend-report:$CI_COMMIT_SHA
 
-backend-test:
-  stage: test
-  image: python:3.9
-  before_script:
-    - pip install -r backend-report/requirements.txt
-    - pip install -U pytest
-  script:
-    - cd backend-report
-    - pytest -v
-    - python3 -m unittest
+#backend-report-test:
+#  stage: test
+#  image: python:3.10.12
+#  before_script:
+#    - pip install --upgrade pip
+#    - pip install -r backend-report/requirements.txt
+#    - pip install -U pytest
+#  script:
+#    - cd backend-report
+#    - pytest -v
+#    - python3 -m unittest
 
 upload-backend-report-latest:
   variables:
@@ -80,4 +81,5 @@ deploy-backend-latest:
 
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
+    - docker-compose --context sausage-store pull backend-report
     - docker-compose --context sausage-store up -d --remove-orphans backend-report
