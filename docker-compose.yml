@@ -4,6 +4,7 @@ services:
   back_blue:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-backend:${BACKEND_VERSION}
     restart: unless-stopped
+    container_name: back_blue
     expose:
       - "8080"
     healthcheck:
@@ -24,6 +25,7 @@ services:
   back_green:
     image: gitlab.praktikum-services.ru:5050/d.ponizovskiy/sausage-store/sausage-backend:${BACKEND_VERSION}
     restart: unless-stopped
+    container_name: back_green
     expose:
       - "8080"
     healthcheck:
