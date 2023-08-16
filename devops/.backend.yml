@@ -105,7 +105,7 @@ deploy-backend:
     
     - if docker-compose --context sausage-store ps back_blue | grep -q healthy; then
       docker-compose --context sausage-store up -d --wait --remove-orphans back_green && 
-      docker-compose --context sausage-store stop back_blue; else
+      docker-compose --context sausage-store stop back_blue; elif
       docker-compose --context sausage-store up -d --wait --remove-orphans back_blue &&
       docker-compose --context sausage-store stop back_green; else
       docker-compose --context sausage-store up -d --remove-orphans back_blue; fi
