@@ -66,7 +66,7 @@ upload-backend-latest:
     
 deploy-backend:
   stage: deploy
-  image: vault:1.11.3
+  image: docker:24.0.2-alpine3.18
 
   # если хотим сделать деплой по кнопке
   #rules:
