@@ -100,5 +100,5 @@ deploy-backend:
     - docker context use default
     - docker-compose --context sausage-store pull back_blue
     - if docker-compose --context sausage-store ps back_blue | grep -q healthy; then
-      docker-compose --context sausage-store up -d --wait back_green --remove-orphans && docker-compose --context sausage-store stop back_blue; else
-      docker-compose --context sausage-store up -d --wait back_blue --remove-orphans && docker-compose --context sausage-store stop back_green; fi
+      docker-compose --context sausage-store up -d back_green --remove-orphans && docker-compose --context sausage-store stop back_blue; else
+      docker-compose --context sausage-store up -d back_blue --remove-orphans && docker-compose --context sausage-store stop back_green; fi
