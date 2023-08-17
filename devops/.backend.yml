@@ -87,12 +87,12 @@ deploy-backend:
   script:
     
     - export BACKEND_VERSION="latest"
-    - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=sausage-store jwt=$CI_JOB_JWT)"
+    - export VAULT_TOKEN="$(docker exec vault vault write -field=token auth/jwt/login role=sausage-store jwt=$CI_JOB_JWT)"
     - export SPRING_DATASOURCE_URL="jdbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}"
     - echo ${SPRING_DATASOURCE_URL}
-    - export SPRING_DATASOURCE_USERNAME="$(vault kv get -field=spring.datasource.username secret/sausage-store)"
+    - export SPRING_DATASOURCE_USERNAME="$(docker exec vault vault kv get -field=spring.datasource.username secret/sausage-store)"
     - echo ${SPRING_DATASOURCE_USERNAME}
-    - export SPRING_DATASOURCE_PASSWORD="$(vault kv get -field=spring.datasource.password secret/sausage-store)"
+    - export SPRING_DATASOURCE_PASSWORD="$(docker exec vault vault kv get -field=spring.datasource.password secret/sausage-store)"
     - echo ${SPRING_DATASOURCE_PASSWORD}
     
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
