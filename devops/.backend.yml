@@ -83,6 +83,8 @@ deploy-backend:
     - chmod 600 ~/.ssh
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
+    - cp ./devops/healthcheck.sh ~/healthcheck.sh
+    - chmod +x ~/healthcheck.sh
 
   script:
     
@@ -99,4 +101,4 @@ deploy-backend:
     - docker context use default
     - docker-compose --context sausage-store pull back_blue
     
-    - ./devops/healthcheck.sh
+    - ~/healthcheck.sh
