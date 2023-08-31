@@ -66,7 +66,7 @@ upload-backend-latest:
     
 deploy-backend:
   stage: deploy
-  image: vault:1.11.3
+  image: vault:1.13.3
 
   # если хотим сделать деплой по кнопке
   #rules:
@@ -83,20 +83,22 @@ deploy-backend:
     - chmod 600 ~/.ssh
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
+    - cp ./devops/healthcheck.sh ~/healthcheck.sh
+    - chmod +x ~/healthcheck.sh
 
   script:
     
     - export BACKEND_VERSION="latest"
     - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=sausage-store jwt=$CI_JOB_JWT)"
-    - export SPRING_DATASOURCE_URL="jdbc:postgresql://${PSQL_HOST}:${PSQL_PORT}/${PSQL_BASE}"
-    - echo ${SPRING_DATASOURCE_URL}
+    - export SPRING_DATASOURCE_URL="$(vault kv get -field=spring.datasource.url secret/sausage-store)"
     - export SPRING_DATASOURCE_USERNAME="$(vault kv get -field=spring.datasource.username secret/sausage-store)"
-    - echo ${SPRING_DATASOURCE_USERNAME}
     - export SPRING_DATASOURCE_PASSWORD="$(vault kv get -field=spring.datasource.password secret/sausage-store)"
-    - echo ${SPRING_DATASOURCE_PASSWORD}
+#    - export FRONTEND_VERSION="latest"
+#    - export BACKEND_REPORT_VERSION="latest"
     
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker context create sausage-store --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
     - docker context use default
-    - docker-compose --context sausage-store pull backend
-    - docker-compose --context sausage-store up -d --remove-orphans backend
+    - docker-compose --context sausage-store pull back_blue
+    
+    - ~/healthcheck.sh
