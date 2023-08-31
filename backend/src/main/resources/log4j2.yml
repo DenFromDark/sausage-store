@@ -3,7 +3,7 @@ configuration:
   properties:
     property:
       - name: report-path
-        value: $${env:REPORT_PATH}
+        value: /app/logs
   appenders:
     Console:
       PatternLayout:
