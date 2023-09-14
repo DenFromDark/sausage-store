@@ -24,7 +24,7 @@ public class SausageApplication {
             productService.save(new Product(3L, "Молочная", 225.00, "https://storage.yandexcloud.net/academ-ponizovskiy-15/4.jpg"));
             productService.save(new Product(4L, "Нюренбергская", 315.00, "https://storage.yandexcloud.net/academ-ponizovskiy-15/3.jpg"));
             productService.save(new Product(5L, "Мюнхенская", 330.00, "https://storage.yandexcloud.net/academ-ponizovskiy-15/2.jpg"));
-            productService.save(new Product(6L, "Еврейская", 189.00, "https://storage.yandexcloud.net/academ-ponizovskiy-15/1.jpg"));
+            productService.save(new Product(6L, "Иудейская", 189.00, "https://storage.yandexcloud.net/academ-ponizovskiy-15/1.jpg"));
         };
     }
 }
