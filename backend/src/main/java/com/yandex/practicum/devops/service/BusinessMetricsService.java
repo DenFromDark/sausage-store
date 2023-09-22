@@ -32,7 +32,7 @@ public class BusinessMetricsService {
         nurnOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Нюренбергская");
         creamyOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Сливочная");
         milkOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Молочная");
-        osobOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Особая");
+        osobOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Еврейская");
     }
 
     public void orderSausage(Order order) {
