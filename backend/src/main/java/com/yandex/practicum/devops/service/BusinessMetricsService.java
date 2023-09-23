@@ -28,11 +28,11 @@ public class BusinessMetricsService {
 
     public void initOrderCounters() {
         munchOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Мюнхенская");
-        rusOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Русская");
+        rusOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Еврейская");
         nurnOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Нюренбергская");
         creamyOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Сливочная");
         milkOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Молочная");
-        osobOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Еврейская");
+        osobOrderCounter = this.meterRegistry.counter("sausage.orders", "type", "Особая");
     }
 
     public void orderSausage(Order order) {
